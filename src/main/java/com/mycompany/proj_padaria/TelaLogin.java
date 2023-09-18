@@ -4,6 +4,7 @@
  */
 package com.mycompany.proj_padaria;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,9 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        setTitle("Login");
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(TelaHome.class.getResource("/imagens/LoginSenha.png")).getImage());
     }
 
     /**
@@ -49,14 +53,14 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(94, 50, 8));
         jLabel2.setText("LOGIN:");
 
-        txtLogin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtLogin.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 50, 8), 2));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(94, 50, 8));
         jLabel3.setText("SENHA:");
 
-        txtSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSenha.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 50, 8), 2));
 
         btEntrar.setBackground(new java.awt.Color(255, 255, 255));
@@ -121,19 +125,17 @@ public class TelaLogin extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.getAccessibleContext().setAccessibleDescription("");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        // 
-
         //VALIDAÇÃO DO BOTÂO DE ENTRADA NA TELA LOGIN
         if (txtLogin.getText().equals("ADM") && txtSenha.getText().equals("123")) {
-            JOptionPane.showMessageDialog(null, "LOGIN EFETUADO COM SUCESSO");
+            TelaHome home = new TelaHome();
+            this.setVisible(false);
+            home.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "LOGIN E/OU SENHA INVÁLIDOS");
+            JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorretos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btEntrarActionPerformed
 
