@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class TelaHome extends javax.swing.JFrame {
 
     TelaCadastroCliente telaCliente = new TelaCadastroCliente();
-    TelaHome telaHome = new TelaHome();
+    TelaLogin telaLogin = new TelaLogin();
 
     /**
      * Creates new form TelaHome
@@ -185,8 +185,8 @@ public class TelaHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroClienteActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        telaHome.setVisible(false);
         this.setVisible(true);
+        telaLogin.setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
 
     /**
