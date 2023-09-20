@@ -4,6 +4,8 @@
  */
 package com.mycompany.proj_padaria;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author nathan.hvferreira
@@ -15,6 +17,10 @@ public class TelaEstoque extends javax.swing.JFrame {
      */
     public TelaEstoque() {
         initComponents();
+        setTitle("Estoque");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon(TelaEstoque.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**

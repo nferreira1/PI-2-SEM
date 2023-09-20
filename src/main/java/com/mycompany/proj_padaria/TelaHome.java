@@ -4,17 +4,14 @@
  */
 package com.mycompany.proj_padaria;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
-//import javax.swing.JFrame;
 
 /**
  *
  * @author Nathan Ferreira
  */
 public class TelaHome extends javax.swing.JFrame {
-
-    TelaCadastroCliente telaCliente = new TelaCadastroCliente();
-    TelaLogin telaLogin = new TelaLogin();
 
     /**
      * Creates new form TelaHome
@@ -23,9 +20,13 @@ public class TelaHome extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Home");
-        setIconImage(new ImageIcon(TelaLogin.class.getResource("/imagens/favicon.png")).getImage());
-        ImageIcon img = new ImageIcon("/imagens/LoginSenha.png");
-//        setExtendedState(MAXIMIZED_BOTH);
+        setIconImage(new ImageIcon(TelaHome.class.getResource("/imagens/favicon.png")).getImage());
+        
+//        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/Logo.png"));
+//
+//        Image img = icon.getImage();
+//        Image resizedImage = img.getScaledInstance(10, 15, Image.SCALE_SMOOTH);
+//        lblImage.setIcon(new ImageIcon(resizedImage));
     }
 
     /**
@@ -41,10 +42,11 @@ public class TelaHome extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btnEstoque = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        btnCadastroCliente = new javax.swing.JButton();
+        btnRelatorioVendas = new javax.swing.JButton();
+        btnCadastroClientes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
+        btnCadastroProdutos = new javax.swing.JButton();
 
         jToolBar1.setRollover(true);
 
@@ -76,6 +78,8 @@ public class TelaHome extends javax.swing.JFrame {
         btnEstoque.setForeground(new java.awt.Color(94, 50, 8));
         btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/caixa.png"))); // NOI18N
         btnEstoque.setText("ESTOQUE");
+        btnEstoque.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEstoque.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnEstoque.setMaximumSize(new java.awt.Dimension(200, 40));
         btnEstoque.setMinimumSize(new java.awt.Dimension(200, 40));
         btnEstoque.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -85,22 +89,33 @@ public class TelaHome extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(94, 50, 8));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/relatorio.png"))); // NOI18N
-        jButton2.setText("RELATÓRIO DE VENDAS");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        btnCadastroCliente.setBackground(new java.awt.Color(204, 204, 204));
-        btnCadastroCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCadastroCliente.setForeground(new java.awt.Color(94, 50, 8));
-        btnCadastroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastro.png"))); // NOI18N
-        btnCadastroCliente.setText("CADASTRO DE CLIENTE");
-        btnCadastroCliente.setToolTipText("");
-        btnCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnRelatorioVendas.setBackground(new java.awt.Color(204, 204, 204));
+        btnRelatorioVendas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRelatorioVendas.setForeground(new java.awt.Color(94, 50, 8));
+        btnRelatorioVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/relatorio.png"))); // NOI18N
+        btnRelatorioVendas.setText("RELATÓRIO DE VENDAS");
+        btnRelatorioVendas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRelatorioVendas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRelatorioVendas.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRelatorioVendas.setMinimumSize(new java.awt.Dimension(200, 40));
+        btnRelatorioVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastroClienteActionPerformed(evt);
+                btnRelatorioVendasActionPerformed(evt);
+            }
+        });
+
+        btnCadastroClientes.setBackground(new java.awt.Color(204, 204, 204));
+        btnCadastroClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCadastroClientes.setForeground(new java.awt.Color(94, 50, 8));
+        btnCadastroClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroCliente.png"))); // NOI18N
+        btnCadastroClientes.setText("CADASTRO DE CLIENTES");
+        btnCadastroClientes.setToolTipText("");
+        btnCadastroClientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCadastroClientes.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnCadastroClientes.setMinimumSize(new java.awt.Dimension(200, 40));
+        btnCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroClientesActionPerformed(evt);
             }
         });
 
@@ -110,13 +125,28 @@ public class TelaHome extends javax.swing.JFrame {
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
         btnSair.setText("SAIR");
         btnSair.setToolTipText("");
+        btnSair.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/LoginSenha.png"))); // NOI18N
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
+
+        btnCadastroProdutos.setBackground(new java.awt.Color(204, 204, 204));
+        btnCadastroProdutos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCadastroProdutos.setForeground(new java.awt.Color(94, 50, 8));
+        btnCadastroProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroProduto.png"))); // NOI18N
+        btnCadastroProdutos.setText("CADASTRO DE PRODUTOS");
+        btnCadastroProdutos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCadastroProdutos.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnCadastroProdutos.setMinimumSize(new java.awt.Dimension(200, 40));
+        btnCadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroProdutosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,41 +155,40 @@ public class TelaHome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastroCliente)
-                            .addComponent(jButton2)
-                            .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel1))
+                            .addComponent(btnCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(lblImage)
+                .addGap(61, 61, 61))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastroCliente, btnEstoque, jButton2});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(btnCadastroCliente)
-                        .addGap(20, 20, 20)
-                        .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addGap(58, 58, 58)
+                        .addComponent(btnCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(37, 37, 37))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImage)
+                        .addGap(87, 87, 87)))
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastroCliente, btnEstoque, jButton2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,18 +205,25 @@ public class TelaHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
-        // TODO add your handling code here:
+        new TelaEstoque().setVisible(true);
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
-    private void btnCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroClienteActionPerformed
-        telaCliente.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCadastroClienteActionPerformed
+    private void btnCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroClientesActionPerformed
+        new TelaCadastroCliente().setVisible(true);
+    }//GEN-LAST:event_btnCadastroClientesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.setVisible(true);
-        telaLogin.setVisible(true);
+        new TelaLogin().setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutosActionPerformed
+        new TelaCadastroProduto().setVisible(true);
+    }//GEN-LAST:event_btnCadastroProdutosActionPerformed
+
+    private void btnRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioVendasActionPerformed
+        new TelaRelatorioVendas().setVisible(true);
+    }//GEN-LAST:event_btnRelatorioVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +236,7 @@ public class TelaHome extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -225,13 +261,14 @@ public class TelaHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastroCliente;
+    private javax.swing.JButton btnCadastroClientes;
+    private javax.swing.JButton btnCadastroProdutos;
     private javax.swing.JButton btnEstoque;
+    private javax.swing.JButton btnRelatorioVendas;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblImage;
     // End of variables declaration//GEN-END:variables
 }

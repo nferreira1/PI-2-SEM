@@ -47,21 +47,21 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.setName(""); // NOI18N
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/LoginSenha.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(94, 50, 8));
         jLabel2.setText("LOGIN:");
 
         txtLogin.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtLogin.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        txtLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(94, 50, 8));
         jLabel3.setText("SENHA:");
 
         txtSenha.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        txtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btEntrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btEntrar.setForeground(new java.awt.Color(94, 50, 8));
@@ -121,7 +121,7 @@ public class TelaLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -129,7 +129,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         //VALIDAÇÃO DO BOTÂO DE ENTRADA NA TELA LOGIN
-        if (txtLogin.getText().equals("ADM") && txtSenha.getText().equals("123")) {
+        if (txtLogin.getText().equalsIgnoreCase("") && txtSenha.getText().equals("")) {
             TelaHome telaHome = new TelaHome();
             this.setVisible(false);
             telaHome.setVisible(true);

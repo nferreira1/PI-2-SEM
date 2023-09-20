@@ -4,6 +4,8 @@
  */
 package com.mycompany.proj_padaria;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author nathan.hvferreira
@@ -15,6 +17,10 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
      */
     public TelaCadastroProduto() {
         initComponents();
+        setTitle("Cadastro de produtos");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon(TelaCadastroProduto.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**

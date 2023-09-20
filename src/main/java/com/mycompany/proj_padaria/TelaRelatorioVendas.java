@@ -4,6 +4,8 @@
  */
 package com.mycompany.proj_padaria;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author nathan.hvferreira
@@ -15,6 +17,10 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
      */
     public TelaRelatorioVendas() {
         initComponents();
+        setTitle("Relatório de vendas");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon(TelaRelatorioVendas.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**

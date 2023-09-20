@@ -17,9 +17,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
      */
     public TelaCadastroCliente() {
         initComponents();
-        setLocationRelativeTo(null);
         setTitle("Cadastro de clientes");
-        setIconImage(new ImageIcon(TelaLogin.class.getResource("/imagens/favicon.png")).getImage());
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon(TelaCadastroCliente.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**
