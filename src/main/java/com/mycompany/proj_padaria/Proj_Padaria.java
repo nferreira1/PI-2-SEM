@@ -12,6 +12,18 @@ package com.mycompany.proj_padaria;
 public class Proj_Padaria {
 
     public static void main(String[] args) {
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
         TelaLogin login = new TelaLogin();
         login.setVisible(true);
     }

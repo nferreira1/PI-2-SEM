@@ -20,7 +20,7 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         setTitle("Login");
         setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(TelaHome.class.getResource("/imagens/LoginSenha.png")).getImage());
+        setIconImage(new ImageIcon(TelaLogin.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**
@@ -54,17 +54,16 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setText("LOGIN:");
 
         txtLogin.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 50, 8), 2));
+        txtLogin.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(94, 50, 8));
         jLabel3.setText("SENHA:");
 
         txtSenha.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 50, 8), 2));
+        txtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
-        btEntrar.setBackground(new java.awt.Color(255, 255, 255));
-        btEntrar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btEntrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btEntrar.setForeground(new java.awt.Color(94, 50, 8));
         btEntrar.setText("ENTRAR");
         btEntrar.setBorder(null);
@@ -122,7 +121,7 @@ public class TelaLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,9 +130,9 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         //VALIDAÇÃO DO BOTÂO DE ENTRADA NA TELA LOGIN
         if (txtLogin.getText().equals("ADM") && txtSenha.getText().equals("123")) {
-            TelaHome home = new TelaHome();
+            TelaHome telaHome = new TelaHome();
             this.setVisible(false);
-            home.setVisible(true);
+            telaHome.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorretos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
         }
