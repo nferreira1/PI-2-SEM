@@ -17,9 +17,17 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
      */
     public TelaCadastroCliente() {
         initComponents();
-        setTitle("Cadastro de clientes");
+        
+        // CENTRALIZA O JFRAME AO CENTRO DA TELA
         setLocationRelativeTo(null);
+        
+        // SETA O TÍTULO
+        setTitle("Cadastro de clientes");
+        
+        // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        // SETA O FAVICON
         setIconImage(new ImageIcon(TelaCadastroCliente.class.getResource("/imagens/favicon.png")).getImage());
     }
 

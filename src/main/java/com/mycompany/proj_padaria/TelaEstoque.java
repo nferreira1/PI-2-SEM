@@ -17,10 +17,18 @@ public class TelaEstoque extends javax.swing.JFrame {
      */
     public TelaEstoque() {
         initComponents();
-        setTitle("Estoque");
+        
+       // CENTRALIZA O JFRAME AO CENTRO DA TELA
         setLocationRelativeTo(null);
+        
+        // SETA O TÍTULO DO JFRAME
+        setTitle("Cadastro de clientes");
+        
+        // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setIconImage(new ImageIcon(TelaEstoque.class.getResource("/imagens/favicon.png")).getImage());
+        
+        // SETA O FAVICON
+        setIconImage(new ImageIcon(TelaCadastroCliente.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**

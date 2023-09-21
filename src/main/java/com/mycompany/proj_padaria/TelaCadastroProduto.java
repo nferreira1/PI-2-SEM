@@ -17,9 +17,17 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
      */
     public TelaCadastroProduto() {
         initComponents();
-        setTitle("Cadastro de produtos");
+
+        // CENTRALIZA O JFRAME AO CENTRO DA TELA
         setLocationRelativeTo(null);
+        
+        // SETA O TÍTULO DO JFRAME
+        setTitle("Cadastro de produtos");
+        
+        // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        // SETA O FAVICON
         setIconImage(new ImageIcon(TelaCadastroProduto.class.getResource("/imagens/favicon.png")).getImage());
     }
 

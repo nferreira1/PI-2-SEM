@@ -17,10 +17,18 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
      */
     public TelaRelatorioVendas() {
         initComponents();
-        setTitle("Relatório de vendas");
+
+        // CENTRALIZA O JFRAME AO CENTRO DA TELA
         setLocationRelativeTo(null);
+        
+        // SETA O TÍTULO DO JFRAME
+        setTitle("Relatório de vendas");
+        
+        // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setIconImage(new ImageIcon(TelaRelatorioVendas.class.getResource("/imagens/favicon.png")).getImage());
+        
+        // SETA O FAVICON
+        setIconImage(new ImageIcon(TelaCadastroCliente.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**

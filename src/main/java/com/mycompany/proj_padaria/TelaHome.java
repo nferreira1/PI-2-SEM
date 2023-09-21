@@ -18,15 +18,21 @@ public class TelaHome extends javax.swing.JFrame {
      */
     public TelaHome() {
         initComponents();
+        
+        // CENTRALIZA O JFRAME AO CENTRO DA TELA
         setLocationRelativeTo(null);
+        
+        // SETA O TÍTULO DO JFRAME
         setTitle("Home");
+        
+        // SETA O FAVICON
         setIconImage(new ImageIcon(TelaHome.class.getResource("/imagens/favicon.png")).getImage());
         
-//        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/Logo.png"));
-//
-//        Image img = icon.getImage();
-//        Image resizedImage = img.getScaledInstance(10, 15, Image.SCALE_SMOOTH);
-//        lblImage.setIcon(new ImageIcon(resizedImage));
+        // MODIFICA O TAMANHO DA IMAGEM
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/Logo.png"));;
+        Image img = icon.getImage();
+        Image resizedImage = img.getScaledInstance(170, 190, Image.SCALE_SMOOTH);
+        lblImage.setIcon(new ImageIcon(resizedImage));
     }
 
     /**
@@ -69,8 +75,8 @@ public class TelaHome extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(450, 370));
 
         jPanel1.setBackground(new java.awt.Color(248, 220, 183));
-        jPanel1.setMaximumSize(new java.awt.Dimension(330, 300));
-        jPanel1.setMinimumSize(new java.awt.Dimension(330, 300));
+        jPanel1.setMaximumSize(new java.awt.Dimension(450, 330));
+        jPanel1.setMinimumSize(new java.awt.Dimension(450, 330));
         jPanel1.setPreferredSize(new java.awt.Dimension(330, 300));
 
         btnEstoque.setBackground(new java.awt.Color(204, 204, 204));
@@ -126,13 +132,18 @@ public class TelaHome extends javax.swing.JFrame {
         btnSair.setText("SAIR");
         btnSair.setToolTipText("");
         btnSair.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSair.setMaximumSize(new java.awt.Dimension(90, 30));
+        btnSair.setMinimumSize(new java.awt.Dimension(90, 30));
+        btnSair.setPreferredSize(new java.awt.Dimension(90, 30));
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
+        lblImage.setMaximumSize(new java.awt.Dimension(170, 200));
+        lblImage.setMinimumSize(new java.awt.Dimension(170, 200));
+        lblImage.setPreferredSize(new java.awt.Dimension(173, 190));
 
         btnCadastroProdutos.setBackground(new java.awt.Color(204, 204, 204));
         btnCadastroProdutos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -157,38 +168,40 @@ public class TelaHome extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
-                .addComponent(lblImage)
-                .addGap(61, 61, 61))
+                        .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastroClientes, btnCadastroProdutos, btnEstoque, btnRelatorioVendas});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(btnCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(37, 37, 37))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(lblImage)
-                        .addGap(87, 87, 87)))
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastroClientes, btnCadastroProdutos, btnEstoque, btnRelatorioVendas});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,7 +226,7 @@ public class TelaHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroClientesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        this.setVisible(true);
+        dispose();
         new TelaLogin().setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
 
