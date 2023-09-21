@@ -33,7 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setIconImage(new ImageIcon(TelaCadastroCliente.class.getResource("/imagens/favicon.png")).getImage());
         
         // MODIFICA O TAMANHO DA IMAGEM
-        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/Logo.png"));;
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/Logo.png"));
         Image img = icon.getImage();
         Image resizedImage = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         lblLogo.setIcon(new ImageIcon(resizedImage));
