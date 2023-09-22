@@ -6,6 +6,8 @@ package com.mycompany.proj_padaria;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
@@ -33,6 +35,23 @@ public class TelaHome extends javax.swing.JFrame {
         Image img = icon.getImage();
         Image resizedImage = img.getScaledInstance(190, 190, Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(resizedImage));
+    }
+
+    // FUNÇÃO QUE VERIFICA SE A TELA ESTÁ ABERTA, CASO TRUE, DESABILITA O BOTÃO DA TELA HOME
+    public void verificaTelaAberta(JFrame tela, JButton botao) {
+        if (!tela.isVisible()) {
+            tela = new TelaCadastroCliente();
+
+            tela.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                    botao.setEnabled(true);
+                }
+            });
+
+            tela.setVisible(true);
+            botao.setEnabled(false);
+        }
     }
 
     /**
@@ -236,26 +255,14 @@ public class TelaHome extends javax.swing.JFrame {
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         TelaEstoque telaEstoque = new TelaEstoque();
-        
+
         // VERIFICA SE A TELA DE ESTOQUE ESTÁ ABERTA, CASO TRUE, DESABILITA O btnEstoque
-        if (!telaEstoque.isVisible()) {
-            telaEstoque = new TelaEstoque();
-
-            telaEstoque.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    btnEstoque.setEnabled(true);
-                }
-            });
-
-            telaEstoque.setVisible(true);
-            btnEstoque.setEnabled(false);
-        }
+        verificaTelaAberta(telaEstoque, btnEstoque);
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroClientesActionPerformed
         TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
-        
+
         // VERIFICA SE A TELA DE CADASTRO DE CLIENTE ESTÁ ABERTA, CASO TRUE, DESABILITA O btnCadastroClientes
         if (!telaCadastroCliente.isVisible()) {
             telaCadastroCliente = new TelaCadastroCliente();
@@ -279,7 +286,7 @@ public class TelaHome extends javax.swing.JFrame {
 
     private void btnCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutosActionPerformed
         TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
-        
+
         // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnCadastroProdutos
         if (!telaCadastroProduto.isVisible()) {
             telaCadastroProduto = new TelaCadastroProduto();
@@ -298,7 +305,7 @@ public class TelaHome extends javax.swing.JFrame {
 
     private void btnRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioVendasActionPerformed
         TelaRelatorioVendas telaRelatorioVendas = new TelaRelatorioVendas();
-        
+
         // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnRelatorioVendas
         if (!telaRelatorioVendas.isVisible()) {
             telaRelatorioVendas = new TelaRelatorioVendas();
