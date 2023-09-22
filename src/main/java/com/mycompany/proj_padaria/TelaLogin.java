@@ -24,7 +24,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         // SETA O TÍTULO DO JFRAME
-        setTitle("Cadastro de clientes");
+        setTitle("Login");
         
         // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

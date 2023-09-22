@@ -264,19 +264,7 @@ public class TelaHome extends javax.swing.JFrame {
         TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
 
         // VERIFICA SE A TELA DE CADASTRO DE CLIENTE ESTÁ ABERTA, CASO TRUE, DESABILITA O btnCadastroClientes
-        if (!telaCadastroCliente.isVisible()) {
-            telaCadastroCliente = new TelaCadastroCliente();
-
-            telaCadastroCliente.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    btnCadastroClientes.setEnabled(true);
-                }
-            });
-
-            telaCadastroCliente.setVisible(true);
-            btnCadastroClientes.setEnabled(false);
-        }
+        verificaTelaAberta(telaCadastroCliente, btnCadastroClientes);
     }//GEN-LAST:event_btnCadastroClientesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -288,38 +276,15 @@ public class TelaHome extends javax.swing.JFrame {
         TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
 
         // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnCadastroProdutos
-        if (!telaCadastroProduto.isVisible()) {
-            telaCadastroProduto = new TelaCadastroProduto();
+        verificaTelaAberta(telaCadastroProduto, btnCadastroProdutos);
 
-            telaCadastroProduto.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    btnCadastroProdutos.setEnabled(true);
-                }
-            });
-
-            telaCadastroProduto.setVisible(true);
-            btnCadastroProdutos.setEnabled(false);
-        }
     }//GEN-LAST:event_btnCadastroProdutosActionPerformed
 
     private void btnRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioVendasActionPerformed
         TelaRelatorioVendas telaRelatorioVendas = new TelaRelatorioVendas();
 
         // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnRelatorioVendas
-        if (!telaRelatorioVendas.isVisible()) {
-            telaRelatorioVendas = new TelaRelatorioVendas();
-
-            telaRelatorioVendas.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    btnRelatorioVendas.setEnabled(true);
-                }
-            });
-
-            telaRelatorioVendas.setVisible(true);
-            btnRelatorioVendas.setEnabled(false);
-        }
+        verificaTelaAberta(telaRelatorioVendas, btnRelatorioVendas);
     }//GEN-LAST:event_btnRelatorioVendasActionPerformed
 
     /**
