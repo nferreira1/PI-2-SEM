@@ -1,7 +1,9 @@
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\TelaLogin.java
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\TelaEstoque.java
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\TelaCadastroCliente.java
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\TelaCadastroProduto.java
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\TelaHome.java
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\TelaRelatorioVendas.java
-C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\com\mycompany\proj_padaria\Proj_Padaria.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\Main.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\interfaces\TelaCadastroProduto.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\interfaces\TelaCadastroCliente.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\interfaces\TelaEstoque.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\services\ViaCEPService.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\interfaces\TelaHome.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\util\Endereco.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\interfaces\TelaLogin.java
+C:\Users\nathan.ferreira\Desktop\Nova pasta\PdvPadaria\src\main\java\br\senac\sp\padoka\interfaces\TelaRelatorioVendas.java
