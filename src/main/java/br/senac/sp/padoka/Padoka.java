@@ -12,7 +12,7 @@ import br.senac.sp.padoka.interfaces.TelaCadastroCliente;
  *
  * @author joao_
  */
-public class Main {
+public class Padoka {
 
     public static void main(String[] args) {
         

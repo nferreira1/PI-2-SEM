@@ -42,7 +42,7 @@ public class TelaHome extends javax.swing.JFrame {
     // FUNÇÃO QUE VERIFICA SE A TELA ESTÁ ABERTA, CASO TRUE, DESABILITA O BOTÃO DA TELA HOME
     public void verificaTelaAberta(JFrame tela, JButton botao) {
         if (!tela.isVisible()) {
-            
+
             tela.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
@@ -50,7 +50,17 @@ public class TelaHome extends javax.swing.JFrame {
                 }
             });
 
+            // VERIFICA SE ESTÁ "LOGADO", CASO FALSE, FECHA TODAS AS TELAS ABERTAS
+            this.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                    tela.dispose();
+                }
+            });
+
             tela.setVisible(true);
+            // COLOCA O JFRAME AO LADO DIREITO DA TELA HOME
+            tela.setLocation(this.getX() + this.getWidth(), this.getY());
             botao.setEnabled(false);
         }
     }

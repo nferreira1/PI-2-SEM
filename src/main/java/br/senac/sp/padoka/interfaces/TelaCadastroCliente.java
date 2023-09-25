@@ -18,9 +18,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     public TelaCadastroCliente() {
         initComponents();
 
-        // CENTRALIZA O JFRAME AO CENTRO DA TELA
-        setLocationRelativeTo(null);
-
         // SETA O TÍTULO
         setTitle("Cadastro de clientes");
 
@@ -46,13 +43,13 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtSexo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        txtEstadoCivil = new javax.swing.JComboBox<>();
         txtCPF = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtCPF1 = new javax.swing.JFormattedTextField();
+        txtDataNascimento = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         txtEmail = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -61,13 +58,13 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         txtTelefone = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        txtCEP1 = new javax.swing.JFormattedTextField();
+        txtCEP = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        txtEndereco1 = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtUF1 = new javax.swing.JTextField();
+        txtUF = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtCidade1 = new javax.swing.JTextField();
+        txtCidade = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -121,10 +118,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(94, 50, 8));
         jLabel3.setText("CPF");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O SEXO", "MASCULINO", "FEMININO" }));
-        jComboBox1.setMaximumSize(new java.awt.Dimension(142, 30));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(142, 30));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(142, 30));
+        txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O SEXO", "MASCULINO", "FEMININO" }));
+        txtSexo.setMaximumSize(new java.awt.Dimension(142, 30));
+        txtSexo.setMinimumSize(new java.awt.Dimension(142, 30));
+        txtSexo.setPreferredSize(new java.awt.Dimension(142, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(94, 50, 8));
@@ -134,10 +131,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(94, 50, 8));
         jLabel5.setText("ESTADO CIVIL");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O ESTADO CIVIL", "SOLTEIRO", "CASADO", "SEPARADO", "DIVORCIADO", "VIÚVO" }));
-        jComboBox2.setMaximumSize(new java.awt.Dimension(142, 30));
-        jComboBox2.setMinimumSize(new java.awt.Dimension(142, 30));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(142, 30));
+        txtEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O ESTADO CIVIL", "SOLTEIRO", "CASADO", "SEPARADO", "DIVORCIADO", "VIÚVO" }));
+        txtEstadoCivil.setMaximumSize(new java.awt.Dimension(142, 30));
+        txtEstadoCivil.setMinimumSize(new java.awt.Dimension(142, 30));
+        txtEstadoCivil.setPreferredSize(new java.awt.Dimension(142, 30));
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -154,16 +151,16 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel9.setText("DATA DE NASCIMENTO");
 
         try {
-            txtCPF1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCPF1.setMaximumSize(new java.awt.Dimension(100, 30));
-        txtCPF1.setMinimumSize(new java.awt.Dimension(100, 30));
-        txtCPF1.setPreferredSize(new java.awt.Dimension(100, 30));
-        txtCPF1.addActionListener(new java.awt.event.ActionListener() {
+        txtDataNascimento.setMaximumSize(new java.awt.Dimension(100, 30));
+        txtDataNascimento.setMinimumSize(new java.awt.Dimension(100, 30));
+        txtDataNascimento.setPreferredSize(new java.awt.Dimension(100, 30));
+        txtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPF1ActionPerformed(evt);
+                txtDataNascimentoActionPerformed(evt);
             }
         });
 
@@ -177,12 +174,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtEstadoCivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +188,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(txtCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,17 +207,17 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
 
@@ -300,10 +297,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
                                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,16 +326,16 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(248, 220, 183));
 
         try {
-            txtCEP1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            txtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCEP1.setMaximumSize(new java.awt.Dimension(70, 30));
-        txtCEP1.setMinimumSize(new java.awt.Dimension(70, 30));
-        txtCEP1.setPreferredSize(new java.awt.Dimension(70, 30));
-        txtCEP1.addActionListener(new java.awt.event.ActionListener() {
+        txtCEP.setMaximumSize(new java.awt.Dimension(70, 30));
+        txtCEP.setMinimumSize(new java.awt.Dimension(70, 30));
+        txtCEP.setPreferredSize(new java.awt.Dimension(70, 30));
+        txtCEP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCEP1ActionPerformed(evt);
+                txtCEPActionPerformed(evt);
             }
         });
 
@@ -347,12 +343,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(94, 50, 8));
         jLabel15.setText("CEP");
 
-        txtEndereco1.setMaximumSize(new java.awt.Dimension(310, 30));
-        txtEndereco1.setMinimumSize(new java.awt.Dimension(310, 30));
-        txtEndereco1.setPreferredSize(new java.awt.Dimension(310, 30));
-        txtEndereco1.addActionListener(new java.awt.event.ActionListener() {
+        txtEndereco.setMaximumSize(new java.awt.Dimension(310, 30));
+        txtEndereco.setMinimumSize(new java.awt.Dimension(310, 30));
+        txtEndereco.setPreferredSize(new java.awt.Dimension(310, 30));
+        txtEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEndereco1ActionPerformed(evt);
+                txtEnderecoActionPerformed(evt);
             }
         });
 
@@ -360,12 +356,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(94, 50, 8));
         jLabel16.setText("ENDEREÇO");
 
-        txtUF1.setMaximumSize(new java.awt.Dimension(30, 30));
-        txtUF1.setMinimumSize(new java.awt.Dimension(30, 30));
-        txtUF1.setPreferredSize(new java.awt.Dimension(30, 30));
-        txtUF1.addActionListener(new java.awt.event.ActionListener() {
+        txtUF.setMaximumSize(new java.awt.Dimension(30, 30));
+        txtUF.setMinimumSize(new java.awt.Dimension(30, 30));
+        txtUF.setPreferredSize(new java.awt.Dimension(30, 30));
+        txtUF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUF1ActionPerformed(evt);
+                txtUFActionPerformed(evt);
             }
         });
 
@@ -373,12 +369,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(94, 50, 8));
         jLabel17.setText("UF");
 
-        txtCidade1.setMaximumSize(new java.awt.Dimension(100, 30));
-        txtCidade1.setMinimumSize(new java.awt.Dimension(100, 30));
-        txtCidade1.setPreferredSize(new java.awt.Dimension(100, 30));
-        txtCidade1.addActionListener(new java.awt.event.ActionListener() {
+        txtCidade.setMaximumSize(new java.awt.Dimension(100, 30));
+        txtCidade.setMinimumSize(new java.awt.Dimension(100, 30));
+        txtCidade.setPreferredSize(new java.awt.Dimension(100, 30));
+        txtCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCidade1ActionPerformed(evt);
+                txtCidadeActionPerformed(evt);
             }
         });
 
@@ -395,25 +391,22 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCEP1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCEP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtEndereco1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                            .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
-                            .addComponent(txtUF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtCidade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(166, 166, 166)))
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -425,18 +418,18 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCEP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndereco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCidade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
@@ -554,9 +547,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void txtCPF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPF1ActionPerformed
+    private void txtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNascimentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPF1ActionPerformed
+    }//GEN-LAST:event_txtDataNascimentoActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
@@ -570,21 +563,21 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneActionPerformed
 
-    private void txtCEP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCEP1ActionPerformed
+    private void txtCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCEPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCEP1ActionPerformed
+    }//GEN-LAST:event_txtCEPActionPerformed
 
-    private void txtEndereco1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndereco1ActionPerformed
+    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEndereco1ActionPerformed
+    }//GEN-LAST:event_txtEnderecoActionPerformed
 
-    private void txtUF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUF1ActionPerformed
+    private void txtUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUF1ActionPerformed
+    }//GEN-LAST:event_txtUFActionPerformed
 
-    private void txtCidade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidade1ActionPerformed
+    private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCidade1ActionPerformed
+    }//GEN-LAST:event_txtCidadeActionPerformed
 
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
         txtNome.setText(txtNome.getText().toUpperCase());
@@ -632,8 +625,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -654,16 +645,18 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JFormattedTextField txtCEP1;
+    private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JFormattedTextField txtCPF;
-    private javax.swing.JFormattedTextField txtCPF1;
     private javax.swing.JFormattedTextField txtCelular;
-    private javax.swing.JTextField txtCidade1;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JFormattedTextField txtDataNascimento;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEndereco1;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JComboBox<String> txtEstadoCivil;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextArea txtObservacoes;
+    private javax.swing.JComboBox<String> txtSexo;
     private javax.swing.JFormattedTextField txtTelefone;
-    private javax.swing.JTextField txtUF1;
+    private javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }

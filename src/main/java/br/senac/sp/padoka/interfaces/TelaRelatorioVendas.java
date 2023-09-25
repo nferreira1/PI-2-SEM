@@ -18,9 +18,6 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
      */
     public TelaRelatorioVendas() {
         initComponents();
-
-        // CENTRALIZA O JFRAME AO CENTRO DA TELA
-        setLocationRelativeTo(null);
         
         // SETA O TÍTULO DO JFRAME
         setTitle("Relatório de vendas");
