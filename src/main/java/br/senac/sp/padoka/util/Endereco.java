@@ -7,26 +7,19 @@ package br.senac.sp.padoka.util;
 /**
  *
  * @author nathan.ferreira
- */
-public class Endereco {
+ */public class Endereco {
 
-    private String CEP;
     private String logradouro;
-    private String complemento;
+    private String cep;
+    private String localidade;
+    private String uf;
+    private String pais;
+    private String numero;
     private String bairro;
-    private String cidade;
-    private String UF;
+    private String complemento;
 
     public Endereco() {
 
-    }
-
-    public String getCEP() {
-        return CEP;
-    }
-
-    public void setCEP(String CEP) {
-        this.CEP = CEP;
     }
 
     public String getLogradouro() {
@@ -37,12 +30,44 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public String getComplemento() {
-        return complemento;
+    public String getCep() {
+        return cep;
     }
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getBairro() {
@@ -53,19 +78,12 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public String getUF() {
-        return UF;
-    }
-
-    public void setUF(String UF) {
-        this.UF = UF;
-    }
 }
