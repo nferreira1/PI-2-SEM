@@ -4,9 +4,9 @@
  */
 package br.senac.sp.padoka.services;
 
-import br.senac.sp.padoka.interfaces.TelaCadastroCliente;
+import br.senac.sp.padoka.interfaces.cliente.TelaCadastroCliente;
 import br.senac.sp.padoka.util.ConverteJsonEmString;
-import br.senac.sp.padoka.util.Endereco;
+import br.senac.sp.padoka.model.Endereco;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

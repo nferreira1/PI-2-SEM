@@ -2,31 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.senac.sp.padoka.interfaces;
+package br.senac.sp.padoka.interfaces.cliente;
 
+import br.senac.sp.padoka.util.VerificaTelaAberta;
 import javax.swing.ImageIcon;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
- * @author Murilo.avieira1
+ * @author nathan.ferreira
  */
-public class TelaEstoque extends javax.swing.JFrame {
+public class TelaClientes extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaEstoque
+     * Creates new form TelaClientes
      */
-    public TelaEstoque() {
+    public TelaClientes() {
         initComponents();
                
         // SETA O TÍTULO
-        setTitle("Estoque");
+        setTitle("Clientes");
 
         // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // SETA O FAVICON
-        setIconImage(new ImageIcon(TelaEstoque.class.getResource("/imagens/favicon.png")).getImage());
+        setIconImage(new ImageIcon(TelaClientes.class.getResource("/imagens/favicon.png")).getImage());
     }
 
     /**
@@ -41,8 +42,9 @@ public class TelaEstoque extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        btnEditar = new javax.swing.JButton();
         txtSexo = new javax.swing.JComboBox<>();
+        btnCriar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +64,29 @@ public class TelaEstoque extends javax.swing.JFrame {
         jTable3.setRowSelectionAllowed(false);
         jScrollPane3.setViewportView(jTable3);
 
+        txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA A CATEGORIA" }));
+        txtSexo.setBorder(null);
+        txtSexo.setMaximumSize(new java.awt.Dimension(142, 30));
+        txtSexo.setMinimumSize(new java.awt.Dimension(142, 30));
+        txtSexo.setPreferredSize(new java.awt.Dimension(142, 30));
+
+        btnCriar.setBackground(new java.awt.Color(248, 220, 183));
+        btnCriar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCriar.setForeground(new java.awt.Color(94, 50, 8));
+        btnCriar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/criarUsuario.png"))); // NOI18N
+        btnCriar.setText("CRIAR");
+        btnCriar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCriar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCriar.setMaximumSize(new java.awt.Dimension(95, 55));
+        btnCriar.setMinimumSize(new java.awt.Dimension(95, 55));
+        btnCriar.setPreferredSize(new java.awt.Dimension(95, 55));
+        btnCriar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarActionPerformed(evt);
+            }
+        });
+
         btnEditar.setBackground(new java.awt.Color(248, 220, 183));
         btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEditar.setForeground(new java.awt.Color(94, 50, 8));
@@ -73,12 +98,6 @@ public class TelaEstoque extends javax.swing.JFrame {
         btnEditar.setMinimumSize(new java.awt.Dimension(95, 55));
         btnEditar.setPreferredSize(new java.awt.Dimension(95, 55));
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA A CATEGORIA" }));
-        txtSexo.setBorder(null);
-        txtSexo.setMaximumSize(new java.awt.Dimension(142, 30));
-        txtSexo.setMinimumSize(new java.awt.Dimension(142, 30));
-        txtSexo.setPreferredSize(new java.awt.Dimension(142, 30));
 
         btnExcluir.setBackground(new java.awt.Color(248, 220, 183));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -108,9 +127,10 @@ public class TelaEstoque extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,14 +140,15 @@ public class TelaEstoque extends javax.swing.JFrame {
                 .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,8 +165,12 @@ public class TelaEstoque extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
+        new VerificaTelaAberta().verificaTelaAberta(new TelaCadastroCliente(), this, btnCriar, true);
+    }//GEN-LAST:event_btnCriarActionPerformed
+
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        dispose();
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
@@ -165,25 +190,26 @@ public class TelaEstoque extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaEstoque().setVisible(true);
+                new TelaClientes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCriar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JPanel jPanel1;

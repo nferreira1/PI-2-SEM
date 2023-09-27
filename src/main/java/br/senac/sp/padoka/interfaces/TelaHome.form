@@ -93,9 +93,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnCadastroClientes" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="btnClientes" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="btnRelatorioVendas" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="btnCadastroProdutos" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="btnProdutos" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="btnEstoque" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -119,9 +119,9 @@
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btnCadastroClientes" linkSize="2" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnClientes" linkSize="2" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnCadastroProdutos" linkSize="2" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="btnProdutos" linkSize="2" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="btnRelatorioVendas" linkSize="2" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -198,7 +198,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRelatorioVendasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCadastroClientes">
+        <Component class="javax.swing.JButton" name="btnClientes">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -209,7 +209,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/cadastroCliente.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CADASTRO DE CLIENTES"/>
+            <Property name="text" type="java.lang.String" value="CLIENTES"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -224,7 +224,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroClientesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSair">
@@ -281,7 +281,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCadastroProdutos">
+        <Component class="javax.swing.JButton" name="btnProdutos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -292,7 +292,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/cadastroProduto.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CADASTRO DE PRODUTOS"/>
+            <Property name="text" type="java.lang.String" value="PRODUTOS"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                 <BevelBorder/>
@@ -306,7 +306,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroProdutosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdutosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVendas">
@@ -337,6 +337,9 @@
               <Dimension value="[110, 30]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

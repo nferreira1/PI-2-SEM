@@ -4,12 +4,11 @@
  */
 package br.senac.sp.padoka.interfaces;
 
-import br.senac.sp.padoka.interfaces.TelaCadastroCliente;
-import br.senac.sp.padoka.interfaces.TelaCadastroProduto;
+import br.senac.sp.padoka.interfaces.produto.TelaProdutos;
+import br.senac.sp.padoka.interfaces.cliente.TelaClientes;
+import br.senac.sp.padoka.util.VerificaTelaAberta;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 /**
  *
@@ -39,32 +38,6 @@ public class TelaHome extends javax.swing.JFrame {
         lblImage.setIcon(new ImageIcon(resizedImage));
     }
 
-    // FUNÇÃO QUE VERIFICA SE A TELA ESTÁ ABERTA, CASO TRUE, DESABILITA O BOTÃO DA TELA HOME
-    public void verificaTelaAberta(JFrame tela, JButton botao) {
-        if (!tela.isVisible()) {
-
-            tela.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    botao.setEnabled(true);
-                }
-            });
-
-            // VERIFICA SE ESTÁ "LOGADO", CASO FALSE, FECHA TODAS AS TELAS ABERTAS
-            this.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    tela.dispose();
-                }
-            });
-
-            tela.setVisible(true);
-            // COLOCA O JFRAME AO LADO DIREITO DA TELA HOME
-            tela.setLocation(this.getX() + this.getWidth(), this.getY());
-            botao.setEnabled(false);
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,10 +52,10 @@ public class TelaHome extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnEstoque = new javax.swing.JButton();
         btnRelatorioVendas = new javax.swing.JButton();
-        btnCadastroClientes = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
-        btnCadastroProdutos = new javax.swing.JButton();
+        btnProdutos = new javax.swing.JButton();
         btnVendas = new javax.swing.JButton();
 
         jToolBar1.setRollover(true);
@@ -137,17 +110,17 @@ public class TelaHome extends javax.swing.JFrame {
             }
         });
 
-        btnCadastroClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCadastroClientes.setForeground(new java.awt.Color(94, 50, 8));
-        btnCadastroClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroCliente.png"))); // NOI18N
-        btnCadastroClientes.setText("CADASTRO DE CLIENTES");
-        btnCadastroClientes.setToolTipText("");
-        btnCadastroClientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCadastroClientes.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnCadastroClientes.setMinimumSize(new java.awt.Dimension(200, 40));
-        btnCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(94, 50, 8));
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroCliente.png"))); // NOI18N
+        btnClientes.setText("CLIENTES");
+        btnClientes.setToolTipText("");
+        btnClientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnClientes.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnClientes.setMinimumSize(new java.awt.Dimension(200, 40));
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastroClientesActionPerformed(evt);
+                btnClientesActionPerformed(evt);
             }
         });
 
@@ -175,16 +148,16 @@ public class TelaHome extends javax.swing.JFrame {
         lblImage.setOpaque(true);
         lblImage.setPreferredSize(new java.awt.Dimension(190, 190));
 
-        btnCadastroProdutos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCadastroProdutos.setForeground(new java.awt.Color(94, 50, 8));
-        btnCadastroProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroProduto.png"))); // NOI18N
-        btnCadastroProdutos.setText("CADASTRO DE PRODUTOS");
-        btnCadastroProdutos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCadastroProdutos.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnCadastroProdutos.setMinimumSize(new java.awt.Dimension(200, 40));
-        btnCadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
+        btnProdutos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnProdutos.setForeground(new java.awt.Color(94, 50, 8));
+        btnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroProduto.png"))); // NOI18N
+        btnProdutos.setText("PRODUTOS");
+        btnProdutos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnProdutos.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnProdutos.setMinimumSize(new java.awt.Dimension(200, 40));
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastroProdutosActionPerformed(evt);
+                btnProdutosActionPerformed(evt);
             }
         });
 
@@ -197,6 +170,11 @@ public class TelaHome extends javax.swing.JFrame {
         btnVendas.setMaximumSize(new java.awt.Dimension(110, 30));
         btnVendas.setMinimumSize(new java.awt.Dimension(110, 30));
         btnVendas.setPreferredSize(new java.awt.Dimension(110, 30));
+        btnVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,9 +189,9 @@ public class TelaHome extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,7 +202,7 @@ public class TelaHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastroClientes, btnCadastroProdutos, btnEstoque, btnRelatorioVendas});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnEstoque, btnProdutos, btnRelatorioVendas});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,9 +212,9 @@ public class TelaHome extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -247,7 +225,7 @@ public class TelaHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastroClientes, btnCadastroProdutos, btnEstoque, btnRelatorioVendas});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClientes, btnEstoque, btnProdutos, btnRelatorioVendas});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,38 +242,34 @@ public class TelaHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
-        TelaEstoque telaEstoque = new TelaEstoque();
-
         // VERIFICA SE A TELA DE ESTOQUE ESTÁ ABERTA, CASO TRUE, DESABILITA O btnEstoque
-        verificaTelaAberta(telaEstoque, btnEstoque);
+        new VerificaTelaAberta().verificaTelaAberta(new TelaEstoque(), this, btnEstoque, false);
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
-    private void btnCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroClientesActionPerformed
-        TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
-
-        // VERIFICA SE A TELA DE CADASTRO DE CLIENTE ESTÁ ABERTA, CASO TRUE, DESABILITA O btnCadastroClientes
-        verificaTelaAberta(telaCadastroCliente, btnCadastroClientes);
-    }//GEN-LAST:event_btnCadastroClientesActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        // VERIFICA SE A TELA DE CLIENTES ESTÁ ABERTA, CASO TRUE, DESABILITA O btnClientes
+        new VerificaTelaAberta().verificaTelaAberta(new TelaClientes(), this, btnClientes, false);
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
         new TelaLogin().setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void btnCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutosActionPerformed
-        TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
-
-        // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnCadastroProdutos
-        verificaTelaAberta(telaCadastroProduto, btnCadastroProdutos);
-
-    }//GEN-LAST:event_btnCadastroProdutosActionPerformed
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        // VERIFICA SE A TELA DE PRODUTOS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnProdutos
+        new VerificaTelaAberta().verificaTelaAberta(new TelaProdutos(), this, btnProdutos, false);
+    }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioVendasActionPerformed
-        TelaRelatorioVendas telaRelatorioVendas = new TelaRelatorioVendas();
-
         // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnRelatorioVendas
-        verificaTelaAberta(telaRelatorioVendas, btnRelatorioVendas);
+        new VerificaTelaAberta().verificaTelaAberta(new TelaRelatorioVendas(), this, btnRelatorioVendas, false);
     }//GEN-LAST:event_btnRelatorioVendasActionPerformed
+
+    private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
+        // VERIFICA SE A TELA DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnVendas
+        new VerificaTelaAberta().verificaTelaAberta(new TelaVendas(), this, btnVendas, false);
+    }//GEN-LAST:event_btnVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,9 +307,9 @@ public class TelaHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastroClientes;
-    private javax.swing.JButton btnCadastroProdutos;
+    private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnEstoque;
+    private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnRelatorioVendas;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnVendas;

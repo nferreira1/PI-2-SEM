@@ -6,7 +6,7 @@
 package br.senac.sp.padoka;
 
 import br.senac.sp.padoka.interfaces.TelaLogin;
-import br.senac.sp.padoka.interfaces.TelaCadastroCliente;
+import br.senac.sp.padoka.interfaces.cliente.TelaCadastroCliente;
 
 /**
  *

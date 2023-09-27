@@ -4,7 +4,7 @@
  */
 package br.senac.sp.padoka.interfaces;
 
-import br.senac.sp.padoka.interfaces.TelaCadastroCliente;
+import br.senac.sp.padoka.interfaces.cliente.TelaCadastroCliente;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
