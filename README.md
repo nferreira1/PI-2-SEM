@@ -23,7 +23,7 @@ Por fim, é relevante ressaltar que no decorrer do projeto, houve uma forte ênf
 Estas instruções permitirão que você faça uma cópia do projeto em sua própria máquina para utilizá-lo e explorá-lo!
 
 ## 2. 📋 Pré-requisitos
-- [Java SE Development Kit 11.0.9](https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html);
+- [Java SE Development Kit 11.0.9](https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html) ou [superior](https://www.oracle.com/java/technologies/downloads/);
 - [Apache NetBeans](https://netbeans.apache.org/).
 
 
