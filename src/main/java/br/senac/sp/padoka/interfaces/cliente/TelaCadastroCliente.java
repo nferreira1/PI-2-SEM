@@ -4,8 +4,12 @@
  */
 package br.senac.sp.padoka.interfaces.cliente;
 
+import br.senac.sp.padoka.dao.ClienteDAO;
+import br.senac.sp.padoka.dao.EnderecoDAO;
+import br.senac.sp.padoka.model.Cliente;
 import br.senac.sp.padoka.services.ViaCEPService;
 import br.senac.sp.padoka.model.Endereco;
+import br.senac.sp.padoka.util.ConverteData;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -63,7 +67,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         txtCEP = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        txtEndereco = new javax.swing.JTextField();
+        txtLogradouro = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtUF = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -353,13 +357,13 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(94, 50, 8));
         jLabel15.setText("CEP *");
 
-        txtEndereco.setEnabled(false);
-        txtEndereco.setMaximumSize(new java.awt.Dimension(310, 30));
-        txtEndereco.setMinimumSize(new java.awt.Dimension(310, 30));
-        txtEndereco.setPreferredSize(new java.awt.Dimension(310, 30));
-        txtEndereco.addActionListener(new java.awt.event.ActionListener() {
+        txtLogradouro.setEnabled(false);
+        txtLogradouro.setMaximumSize(new java.awt.Dimension(310, 30));
+        txtLogradouro.setMinimumSize(new java.awt.Dimension(310, 30));
+        txtLogradouro.setPreferredSize(new java.awt.Dimension(310, 30));
+        txtLogradouro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnderecoActionPerformed(evt);
+                txtLogradouroActionPerformed(evt);
             }
         });
 
@@ -461,7 +465,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(0, 162, Short.MAX_VALUE))
-                            .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                            .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -501,7 +505,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
@@ -577,6 +581,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         btnConfirmar.setMinimumSize(new java.awt.Dimension(95, 55));
         btnConfirmar.setPreferredSize(new java.awt.Dimension(95, 55));
         btnConfirmar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(248, 220, 183));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -665,9 +674,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCEPActionPerformed
 
-    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
+    private void txtLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLogradouroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnderecoActionPerformed
+    }//GEN-LAST:event_txtLogradouroActionPerformed
 
     private void txtUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUFActionPerformed
         // TODO add your handling code here:
@@ -708,22 +717,22 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Endereço não encontrado");
                 txtCidade.setText("");
                 txtBairro.setText("");
-                txtEndereco.setText("");
+                txtLogradouro.setText("");
                 txtUF.setText("");
-                
+
                 txtCidade.setEnabled(true);
                 txtBairro.setEnabled(true);
-                txtEndereco.setEnabled(true);
+                txtLogradouro.setEnabled(true);
                 txtUF.setEnabled(true);
             } else {
                 txtCidade.setText(endereco.getLocalidade().toUpperCase());
                 txtBairro.setText(endereco.getBairro().toUpperCase());
-                txtEndereco.setText(endereco.getLogradouro().toUpperCase());
+                txtLogradouro.setText(endereco.getLogradouro().toUpperCase());
                 txtUF.setText(endereco.getUf().toUpperCase());
-                
+
                 txtCidade.setEnabled(false);
                 txtBairro.setEnabled(false);
-                txtEndereco.setEnabled(false);
+                txtLogradouro.setEnabled(false);
                 txtUF.setEnabled(false);
             }
         } catch (Exception ex) {
@@ -731,6 +740,42 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao buscar o endereço");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // INSERINDO NA TABELA enderecos
+        Endereco endereco = new Endereco();
+
+        endereco.setCep(txtCEP.getText());
+        endereco.setLogradouro(txtLogradouro.getText());
+        endereco.setLocalidade(txtCidade.getText());
+        endereco.setNumero(txtNumero.getText());
+        endereco.setBairro(txtBairro.getText());
+        endereco.setComplemento(txtComplemento.getText());
+        endereco.setUf(txtUF.getText());
+
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
+        int idGerado = enderecoDAO.inserir(endereco);
+
+        // INSERINDO NA TABELA clientes
+        Cliente cliente = new Cliente();
+
+        cliente.setNome(txtNome.getText());
+        cliente.setCPF(txtCPF.getText());
+        cliente.setData_de_nascimento(ConverteData.converteData(txtDataNascimento.getText()));
+        cliente.setSexo((String) txtSexo.getSelectedItem());
+        cliente.setEstado_civil((String) txtEstadoCivil.getSelectedItem());
+        cliente.setCelular(txtCelular.getText());
+        cliente.setEndereco(idGerado);
+        cliente.setTelefone(txtTelefone.getText());
+        cliente.setEmail(txtEmail.getText());
+        cliente.setObservacoes(txtObservacoes.getText());
+        cliente.setNome(txtNome.getText());
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.inserir(cliente);
+
+        JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -802,8 +847,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JFormattedTextField txtDataNascimento;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEndereco;
     private javax.swing.JComboBox<String> txtEstadoCivil;
+    private javax.swing.JTextField txtLogradouro;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextArea txtObservacoes;

@@ -4,7 +4,10 @@
  */
 package br.senac.sp.padoka.interfaces.produto;
 
+import br.senac.sp.padoka.model.Produto;
+import br.senac.sp.padoka.dao.ProdutoDAO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -47,12 +50,12 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtCategoria = new javax.swing.JComboBox<>();
-        txtTipo = new javax.swing.JComboBox<>();
+        txtUnidadeMedida = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtEstoque = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JFormattedTextField();
+        txtEstoque1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(450, 330));
@@ -70,6 +73,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         btnConfirmar.setMinimumSize(new java.awt.Dimension(95, 55));
         btnConfirmar.setPreferredSize(new java.awt.Dimension(95, 55));
         btnConfirmar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(248, 220, 183));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -131,23 +139,23 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         txtCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA A CATEGORIA", "LATICÍNIOS", "BEBIDAS", "SALGADOS", "CONFEITARIA" }));
 
-        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O TIPO", "KG", "G", "L", "ML" }));
+        txtUnidadeMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O TIPO", "KG", "G", "L", "ML" }));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(94, 50, 8));
-        jLabel6.setText("TIPO");
+        jLabel6.setText("UNIDADE DE MEDIDA");
 
-        txtEstoque.setMaximumSize(new java.awt.Dimension(310, 30));
-        txtEstoque.setMinimumSize(new java.awt.Dimension(310, 30));
-        txtEstoque.setPreferredSize(new java.awt.Dimension(310, 30));
-        txtEstoque.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtValor.setMaximumSize(new java.awt.Dimension(310, 30));
+        txtValor.setMinimumSize(new java.awt.Dimension(310, 30));
+        txtValor.setPreferredSize(new java.awt.Dimension(310, 30));
+        txtValor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEstoqueFocusLost(evt);
+                txtValorFocusLost(evt);
             }
         });
-        txtEstoque.addActionListener(new java.awt.event.ActionListener() {
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstoqueActionPerformed(evt);
+                txtValorActionPerformed(evt);
             }
         });
 
@@ -159,7 +167,19 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(94, 50, 8));
         jLabel7.setText("VALOR");
 
-        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtEstoque1.setMaximumSize(new java.awt.Dimension(310, 30));
+        txtEstoque1.setMinimumSize(new java.awt.Dimension(310, 30));
+        txtEstoque1.setPreferredSize(new java.awt.Dimension(310, 30));
+        txtEstoque1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEstoque1FocusLost(evt);
+            }
+        });
+        txtEstoque1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstoque1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -179,24 +199,28 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(txtCategoria, 0, 210, Short.MAX_VALUE)
-                            .addComponent(jLabel5)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtUnidadeMedida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtValor))))
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(171, 171, 171))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -216,25 +240,25 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(5, 5, 5)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUnidadeMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtValor))
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,13 +295,35 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFocusLost
 
-    private void txtEstoqueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoqueFocusLost
+    private void txtValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstoqueFocusLost
+    }//GEN-LAST:event_txtValorFocusLost
 
-    private void txtEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstoqueActionPerformed
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstoqueActionPerformed
+    }//GEN-LAST:event_txtValorActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // INSERINDO NA TABELA clientes
+        Produto produto = new Produto();
+
+        produto.setNome(txtNome.getText());
+        produto.setCategoria((String) txtCategoria.getSelectedItem());
+        produto.setUnidade_de_medida((String) txtUnidadeMedida.getSelectedItem());
+        produto.setEstoque(Integer.parseInt(txtValor.getText()));
+        produto.setValor(Integer.parseInt(txtValor.getText()));
+
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        produtoDAO.inserir(produto);
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void txtEstoque1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoque1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstoque1FocusLost
+
+    private void txtEstoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstoque1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstoque1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,10 +371,10 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> txtCategoria;
-    private javax.swing.JTextField txtEstoque;
+    private javax.swing.JTextField txtEstoque1;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JComboBox<String> txtTipo;
-    private javax.swing.JFormattedTextField txtValor;
+    private javax.swing.JComboBox<String> txtUnidadeMedida;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

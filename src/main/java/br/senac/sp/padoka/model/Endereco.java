@@ -7,8 +7,10 @@ package br.senac.sp.padoka.model;
 /**
  *
  * @author nathan.ferreira
- */public class Endereco {
+ */
+public class Endereco {
 
+    private int id;
     private String logradouro;
     private String cep;
     private String localidade;
@@ -20,6 +22,14 @@ package br.senac.sp.padoka.model;
 
     public Endereco() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogradouro() {
