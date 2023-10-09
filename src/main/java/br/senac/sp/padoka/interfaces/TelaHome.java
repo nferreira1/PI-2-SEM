@@ -263,7 +263,7 @@ public class TelaHome extends javax.swing.JFrame {
 
     private void btnRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioVendasActionPerformed
         // VERIFICA SE A TELA DE RELATÓRIO DE VENDAS ESTÁ ABERTA, CASO TRUE, DESABILITA O btnRelatorioVendas
-        new VerificaTelaAberta().verificaTelaAberta(new TelaRelatorioVendas(), this, btnRelatorioVendas, false);
+//        new VerificaTelaAberta().verificaTelaAberta(new TelaRelatorioVendas(), this, btnRelatorioVendas, false);
     }//GEN-LAST:event_btnRelatorioVendasActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
