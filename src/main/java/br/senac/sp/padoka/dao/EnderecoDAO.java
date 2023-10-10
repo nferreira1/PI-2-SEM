@@ -20,7 +20,7 @@ import java.util.List;
 public class EnderecoDAO {
 
     public int inserir(Endereco endereco) {
-        String sql = "INSERT INTO enderecos (CEP, logradouro, numero, bairro, complemento, UF, cidade) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO enderecos (CEP, logradouro, numero, bairro, complemento, UF, cidade, cliente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -31,6 +31,7 @@ public class EnderecoDAO {
             stmt.setString(5, endereco.getComplemento());
             stmt.setString(6, endereco.getUf());
             stmt.setString(7, endereco.getLocalidade());
+            stmt.setInt(8, endereco.getCliente_id());
 
             stmt.executeUpdate();
 
@@ -41,12 +42,13 @@ public class EnderecoDAO {
                     throw new SQLException("Erro ao inserir endereço. Nenhum ID obtido.");
                 }
             }
+
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir cliente.", e);
         }
     }
 
-    public void atualizar(Endereco endereco, int id) {
+    public void atualizar(Endereco endereco) {
         String sql = "UPDATE enderecos SET CEP = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, UF = ?, cidade = ? WHERE id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -58,7 +60,7 @@ public class EnderecoDAO {
             stmt.setString(5, endereco.getComplemento());
             stmt.setString(6, endereco.getUf());
             stmt.setString(7, endereco.getLocalidade());
-            stmt.setInt(8, id);
+            stmt.setInt(8, endereco.getId());
 
             stmt.executeUpdate();
 
@@ -97,5 +99,36 @@ public class EnderecoDAO {
         }
 
         return listaEnderecos;
+    }
+
+    public Endereco getEndereco(int id) {
+        Endereco endereco = new Endereco();
+
+        String sql = "SELECT * FROM enderecos WHERE cliente_ID = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+
+                    endereco.setId(rs.getInt("ID"));
+                    endereco.setLogradouro(rs.getString("logradouro"));
+                    endereco.setCep(rs.getString("cep"));
+                    endereco.setLocalidade(rs.getString("cidade"));
+                    endereco.setUf(rs.getString("uf"));
+                    endereco.setNumero(rs.getString("numero"));
+                    endereco.setBairro(rs.getString("bairro"));
+                    endereco.setComplemento(rs.getString("complemento"));
+
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar endereços.", e);
+        }
+
+        return endereco;
     }
 }

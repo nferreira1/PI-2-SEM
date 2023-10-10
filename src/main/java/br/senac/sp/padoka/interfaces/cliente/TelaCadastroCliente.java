@@ -19,14 +19,40 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastroCliente extends javax.swing.JFrame {
 
+    private boolean tipoTela;
+
+    public boolean getTipoTela() {
+        return this.tipoTela;
+    }
+
     /**
      * Creates new form TelaCadastroCliente
      */
     public TelaCadastroCliente() {
+        this.tipoTela = true;
+
         initComponents();
 
         // SETA O TÍTULO
         setTitle("Cadastro de clientes");
+
+        // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        // SETA O FAVICON
+        setIconImage(new ImageIcon(TelaCadastroCliente.class.getResource("/imagens/favicon.png")).getImage());
+    }
+
+    public TelaCadastroCliente(boolean edit) {
+        this.tipoTela = false;
+
+        initComponents();
+
+        // SETA O TÍTULO
+        setTitle("Editar cliente");
+
+        // ALTERA O TEXTO DO btnConfirmar
+        btnConfirmar.setText("ATUALIZAR");
 
         // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -747,39 +773,47 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // INSERINDO NA TABELA enderecos
-        Endereco endereco = new Endereco();
+        if (tipoTela) {
 
-        endereco.setCep(txtCEP.getText());
-        endereco.setLogradouro(txtLogradouro.getText());
-        endereco.setLocalidade(txtCidade.getText());
-        endereco.setNumero(txtNumero.getText());
-        endereco.setBairro(txtBairro.getText());
-        endereco.setComplemento(txtComplemento.getText());
-        endereco.setUf(txtUF.getText());
+            // INSERINDO NA TABELA enderecos
+            Endereco endereco = new Endereco();
 
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
-        int idGerado = enderecoDAO.inserir(endereco);
+            endereco.setCep(txtCEP.getText());
+            endereco.setLogradouro(txtLogradouro.getText());
+            endereco.setLocalidade(txtCidade.getText());
+            endereco.setNumero(txtNumero.getText());
+            endereco.setBairro(txtBairro.getText());
+            endereco.setComplemento(txtComplemento.getText());
+            endereco.setUf(txtUF.getText());
 
-        // INSERINDO NA TABELA clientes
-        Cliente cliente = new Cliente();
+            // INSERINDO NA TABELA clientes
+            Cliente cliente = new Cliente();
 
-        cliente.setNome(txtNome.getText());
-        cliente.setCPF(txtCPF.getText());
-        cliente.setData_de_nascimento(ConverteData.converteData(txtDataNascimento.getText(), "US"));
-        cliente.setSexo((String) txtSexo.getSelectedItem());
-        cliente.setEstado_civil((String) txtEstadoCivil.getSelectedItem());
-        cliente.setCelular(txtCelular.getText());
-        cliente.setEndereco(idGerado);
-        cliente.setTelefone(txtTelefone.getText());
-        cliente.setEmail(txtEmail.getText());
-        cliente.setObservacoes(txtObservacoes.getText());
-        cliente.setNome(txtNome.getText());
+            cliente.setNome(txtNome.getText());
+            cliente.setCPF(txtCPF.getText());
+            cliente.setData_de_nascimento(ConverteData.converteData(txtDataNascimento.getText(), "US"));
+            cliente.setSexo((String) txtSexo.getSelectedItem());
+            cliente.setEstado_civil((String) txtEstadoCivil.getSelectedItem());
+            cliente.setCelular(txtCelular.getText());
+            cliente.setEndereco(endereco);
+            cliente.setTelefone(txtTelefone.getText());
+            cliente.setEmail(txtEmail.getText());
+            cliente.setObservacoes(txtObservacoes.getText());
+            cliente.setNome(txtNome.getText());
 
-        ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.inserir(cliente);
+            ClienteDAO clienteDAO = new ClienteDAO();
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-        JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+            clienteDAO.inserir(cliente);
+
+            if (cliente.getId() > 0) {
+                endereco.setCliente_id(cliente.getId());
+                enderecoDAO.inserir(endereco);
+            }
+
+            JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+        }
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked

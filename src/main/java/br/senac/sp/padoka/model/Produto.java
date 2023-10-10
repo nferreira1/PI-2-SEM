@@ -10,11 +10,33 @@ package br.senac.sp.padoka.model;
  */
 public class Produto {
 
+    private int id;
     private String nome;
-    private String categoria;
+    private int categoria_id;
+    private String nomeCategoria;
     private String unidade_de_medida;
     private int estoque;
     private int valor;
+
+    public Produto(String nome, int categoria_id, String unidade_de_medida, int estoque, int valor) {
+        this.nome = nome;
+        this.categoria_id = categoria_id;
+        this.unidade_de_medida = unidade_de_medida;
+        this.estoque = estoque;
+        this.valor = valor;
+    }
+
+    public Produto() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -24,12 +46,20 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getNomeCategoria() {
+        return nomeCategoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
+    }
+
+    public int getCategoria() {
+        return categoria_id;
+    }
+
+    public void setCategoria(int categoria_id) {
+        this.categoria_id = categoria_id;
     }
 
     public String getUnidade_de_medida() {

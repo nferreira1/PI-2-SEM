@@ -4,9 +4,14 @@
  */
 package br.senac.sp.padoka.interfaces.produto;
 
+import br.senac.sp.padoka.dao.ProdutoDAO;
+import br.senac.sp.padoka.model.Produto;
 import br.senac.sp.padoka.util.VerificaTelaAberta;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,11 +19,15 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class TelaProdutos extends javax.swing.JFrame {
 
+    private ProdutoDAO produtoDAO;
+
     /**
      * Creates new form TelaProdutos
      */
     public TelaProdutos() {
         initComponents();
+
+        produtoDAO = new ProdutoDAO();
 
         // SETA O TÍTULO DO JFRAME
         setTitle("Produtos");
@@ -53,6 +62,11 @@ public class TelaProdutos extends javax.swing.JFrame {
                 formMouseReleased(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(248, 220, 183));
 
@@ -63,11 +77,22 @@ public class TelaProdutos extends javax.swing.JFrame {
             new String [] {
                 "ID", "NOME", "CATEGORIA", "TIPO", "ESTOQUE", "VALOR"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabelaProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabelaProdutos.setMaximumSize(new java.awt.Dimension(480, 430));
-        tabelaProdutos.setRowSelectionAllowed(false);
         jScrollPane3.setViewportView(tabelaProdutos);
+        if (tabelaProdutos.getColumnModel().getColumnCount() > 0) {
+            tabelaProdutos.getColumnModel().getColumn(0).setMinWidth(20);
+            tabelaProdutos.getColumnModel().getColumn(0).setMaxWidth(20);
+        }
 
         btnEditar.setBackground(new java.awt.Color(248, 220, 183));
         btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -176,6 +201,18 @@ public class TelaProdutos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        DefaultTableModel tabela = (DefaultTableModel) tabelaProdutos.getModel();
+        int linhaSelecionada = tabelaProdutos.getSelectedRow();
+
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        } else {
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                produtoDAO.deletar((int) tabela.getValueAt(linhaSelecionada, 0));
+                tabela.removeRow(linhaSelecionada);
+            }
+        }
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -186,6 +223,24 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         new VerificaTelaAberta().verificaTelaAberta(new TelaCadastroProduto(), this, btnCriar, true);
     }//GEN-LAST:event_btnCriarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        List<Produto> listaClientes = produtoDAO.listarProdutos();
+
+        DefaultTableModel tabela = (DefaultTableModel) tabelaProdutos.getModel();
+        tabela.setRowCount(0);
+
+        for (Produto produto : listaClientes) {
+            tabela.addRow(new Object[]{
+                produto.getId(),
+                produto.getNome(),
+                produto.getCategoria(),
+                produto.getUnidade_de_medida(),
+                produto.getEstoque(),
+                produto.getValor()
+            });
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

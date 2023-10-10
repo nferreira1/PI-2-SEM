@@ -24,11 +24,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaClientes extends javax.swing.JFrame {
 
+    private EnderecoDAO enderecoDAO;
+    private ClienteDAO clienteDAO;
+
     /**
      * Creates new form TelaClientes
      */
     public TelaClientes() {
         initComponents();
+
+        enderecoDAO = new EnderecoDAO();
+        clienteDAO = new ClienteDAO();
 
         // SETA O TÍTULO
         setTitle("Clientes");
@@ -192,11 +198,22 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        DefaultTableModel tabela = (DefaultTableModel) tabelaClientes.getModel();
+        int linhaSelecionada = tabelaClientes.getSelectedRow();
+
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir.");
+        } else {
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                clienteDAO.deletar((int) tabela.getValueAt(linhaSelecionada, 0));
+                tabela.removeRow(linhaSelecionada);
+            }
+        }
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ClienteDAO clienteDAO = new ClienteDAO();
         List<Cliente> listaClientes = clienteDAO.listarClientes();
 
         DefaultTableModel tabela = (DefaultTableModel) tabelaClientes.getModel();
@@ -212,7 +229,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 cliente.getTelefone(),
                 cliente.getEmail(),
                 cliente.getSexo(),
-                cliente.getEndereco(),
+                cliente.getEndereco().toString(),
                 cliente.getEstado_civil(),
                 cliente.getObservacoes()
             });
@@ -220,21 +237,17 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        TelaCadastroCliente tela = new TelaCadastroCliente();
+        TelaCadastroCliente tela = new TelaCadastroCliente(true);
         DefaultTableModel tabela = (DefaultTableModel) tabelaClientes.getModel();
 
         int linhaSelecionada = tabelaClientes.getSelectedRow();
-        if (linhaSelecionada == -1) { // Verifica se há uma linha selecionada
+
+        if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um cliente para editar.");
-            return;
         } else {
             new VerificaTelaAberta().verificaTelaAberta(tela, this, btnEditar, true);
-
-            // SETA O TÍTULO
-            tela.setTitle("Editar cliente");
-
-            // ALTERA O TEXTO DO btnConfirmar
-            tela.btnConfirmar.setText("ATUALIZAR");
+            Cliente clienteEdit = new Cliente();
+            Endereco enderecoEdit = enderecoDAO.getEndereco((int) tabela.getValueAt(linhaSelecionada, 0));
 
             tela.txtNome.setText((String) tabela.getValueAt(linhaSelecionada, 1));
             tela.txtCPF.setText((String) tabela.getValueAt(linhaSelecionada, 2));
@@ -246,46 +259,49 @@ public class TelaClientes extends javax.swing.JFrame {
             tela.txtEstadoCivil.setSelectedItem(tabela.getValueAt(linhaSelecionada, 9));
             tela.txtObservacoes.setText((String) tabela.getValueAt(linhaSelecionada, 10));
 
-            EnderecoDAO enderecoDAO = new EnderecoDAO();
-            List<Endereco> enderecos = enderecoDAO.listarEndereco((int) tabela.getValueAt(linhaSelecionada, 8));
-            Endereco endereco = enderecos.get(0);
-
-            if (!enderecos.isEmpty()) {
-                tela.txtCEP.setText(endereco.getCep());
-                tela.txtLogradouro.setText(endereco.getLogradouro());
-                tela.txtNumero.setText(endereco.getNumero());
-                tela.txtBairro.setText(endereco.getBairro());
-                tela.txtComplemento.setText(endereco.getComplemento());
-                tela.txtUF.setText(endereco.getUf());
-                tela.txtCidade.setText(endereco.getLocalidade());
+            if (enderecoEdit != null) {
+                tela.txtCEP.setText(enderecoEdit.getCep());
+                tela.txtLogradouro.setText(enderecoEdit.getLogradouro());
+                tela.txtNumero.setText(enderecoEdit.getNumero());
+                tela.txtBairro.setText(enderecoEdit.getBairro());
+                tela.txtComplemento.setText(enderecoEdit.getComplemento());
+                tela.txtUF.setText(enderecoEdit.getUf());
+                tela.txtCidade.setText(enderecoEdit.getLocalidade());
             }
 
-            if (tela.getTitle().equals("Editar cliente")) {
-                tela.btnConfirmar.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Cliente cliente = new Cliente();
+            tela.btnConfirmar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
-                        cliente.setNome(tela.txtNome.getText());
-                        cliente.setCPF(tela.txtCPF.getText());
-                        cliente.setData_de_nascimento(ConverteData.converteData(tela.txtDataNascimento.getText(), "US"));
-                        cliente.setSexo((String) tela.txtSexo.getSelectedItem());
-                        cliente.setEstado_civil((String) tela.txtEstadoCivil.getSelectedItem());
-                        cliente.setCelular(tela.txtCelular.getText());
+                    clienteEdit.setNome(tela.txtNome.getText());
+                    clienteEdit.setCPF(tela.txtCPF.getText());
+                    clienteEdit.setData_de_nascimento(ConverteData.converteData(tela.txtDataNascimento.getText(), "US"));
+                    clienteEdit.setSexo((String) tela.txtSexo.getSelectedItem());
+                    clienteEdit.setEstado_civil((String) tela.txtEstadoCivil.getSelectedItem());
+                    clienteEdit.setCelular(tela.txtCelular.getText());
 
-                        cliente.setTelefone(tela.txtTelefone.getText());
-                        cliente.setEmail(tela.txtEmail.getText());
-                        cliente.setObservacoes(tela.txtObservacoes.getText());
-                        cliente.setId((int) tabela.getValueAt(linhaSelecionada, 0));
+                    clienteEdit.setTelefone(tela.txtTelefone.getText());
+                    clienteEdit.setEmail(tela.txtEmail.getText());
+                    clienteEdit.setObservacoes(tela.txtObservacoes.getText());
+                    clienteEdit.setId((int) tabela.getValueAt(linhaSelecionada, 0));
 
-                        ClienteDAO clienteDAO = new ClienteDAO();
-                        clienteDAO.atualizar(cliente);
+                    clienteDAO.atualizar(clienteEdit);
 
-//                        enderecoDAO.atualizar(endereco, (int) tabela.getValueAt(linhaSelecionada, 8));
+                    enderecoEdit.setCep(tela.txtCEP.getText());
+                    enderecoEdit.setLogradouro(tela.txtLogradouro.getText());
+                    enderecoEdit.setNumero(tela.txtNumero.getText());
+                    enderecoEdit.setBairro(tela.txtBairro.getText());
+                    enderecoEdit.setComplemento(tela.txtComplemento.getText());
+                    enderecoEdit.setUf(tela.txtUF.getText());
+                    enderecoEdit.setLocalidade(tela.txtCidade.getText());
 
-                    }
-                });
-            }
+                    enderecoDAO.atualizar(enderecoEdit);
+
+                    JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
+                    tela.dispose();
+
+                }
+            });
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 

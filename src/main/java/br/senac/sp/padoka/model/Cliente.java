@@ -14,7 +14,7 @@ public class Cliente {
     private String nome;
     private String CPF;
     private String data_de_nascimento;
-    private int endereco;
+    private Endereco endereco;
     private String celular;
     private String telefone;
     private String email;
@@ -43,7 +43,11 @@ public class Cliente {
     }
 
     public void setCPF(String CPF) {
-        this.CPF = CPF;
+        String cpfEdit = CPF.replaceAll("[-.]", "");
+        if (cpfEdit.isBlank() || cpfEdit.isEmpty()) {
+            cpfEdit = null;
+        }
+        this.CPF = cpfEdit;
     }
 
     public String getData_de_nascimento() {
@@ -54,11 +58,11 @@ public class Cliente {
         this.data_de_nascimento = data_de_nascimento;
     }
 
-    public int getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(int endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
@@ -67,7 +71,15 @@ public class Cliente {
     }
 
     public void setCelular(String celular) {
-        this.celular = celular;
+        String celularEdit = "";
+        if (celular != null) {
+            celularEdit = celular.replaceAll("[-()]", "");
+            if (celularEdit.isBlank() || celularEdit.isEmpty()) {
+                celularEdit = null;
+            }
+        }
+
+        this.celular = celularEdit;
     }
 
     public String getTelefone() {
@@ -75,7 +87,14 @@ public class Cliente {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        String telefoneEdit = "";
+        if (telefone != null) {
+            telefoneEdit = telefone.replaceAll("[-()]", "");
+            if (telefoneEdit.isBlank() || telefoneEdit.isEmpty()) {
+                telefoneEdit = null;
+            }
+        }
+        this.telefone = telefoneEdit;
     }
 
     public String getEmail() {
@@ -83,6 +102,12 @@ public class Cliente {
     }
 
     public void setEmail(String email) {
+        if (email != null) {
+            if (email.isBlank() || email.isEmpty()) {
+                email = null;
+            }
+        }
+
         this.email = email;
     }
 
@@ -107,7 +132,11 @@ public class Cliente {
     }
 
     public void setObservacoes(String observacoes) {
+        if (observacoes != null) {
+            if (observacoes.isBlank() || observacoes.isEmpty()) {
+                observacoes = null;
+            }
+        }
         this.observacoes = observacoes;
-
     }
 }

@@ -11,6 +11,7 @@ package br.senac.sp.padoka.model;
 public class Endereco {
 
     private int id;
+    private int cliente_id;
     private String logradouro;
     private String cep;
     private String localidade;
@@ -32,6 +33,14 @@ public class Endereco {
         this.id = id;
     }
 
+    public int getCliente_id() {
+        return cliente_id;
+    }
+
+    public void setCliente_id(int cliente_id) {
+        this.cliente_id = cliente_id;
+    }
+
     public String getLogradouro() {
         return logradouro;
     }
@@ -45,7 +54,7 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
-        this.cep = cep;
+        this.cep = cep.replaceAll("[-]", "");
     }
 
     public String getLocalidade() {
@@ -77,6 +86,9 @@ public class Endereco {
     }
 
     public void setNumero(String numero) {
+        if (numero.isBlank() || numero.isEmpty()) {
+            numero = null;
+        }
         this.numero = numero;
     }
 
@@ -93,7 +105,15 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
+        if (complemento.isBlank() || complemento.isEmpty()) {
+            complemento = null;
+        }
         this.complemento = complemento;
+    }
+
+    @Override
+    public String toString() {
+        return this.logradouro + ", " + this.numero + " - " + this.bairro + " - " + localidade;
     }
 
 }

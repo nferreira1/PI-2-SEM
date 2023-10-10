@@ -6,6 +6,8 @@ package br.senac.sp.padoka.interfaces.produto;
 
 import br.senac.sp.padoka.model.Produto;
 import br.senac.sp.padoka.dao.ProdutoDAO;
+import br.senac.sp.padoka.model.Categoria;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -22,6 +24,8 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     public TelaCadastroProduto() {
         initComponents();
 
+        carregarCategorias();
+
         // SETA O TÍTULO DO JFRAME
         setTitle("Cadastro de produtos");
 
@@ -30,6 +34,16 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         // SETA O FAVICON
         setIconImage(new ImageIcon(TelaCadastroProduto.class.getResource("/imagens/favicon.png")).getImage());
+    }
+
+    private void carregarCategorias() {
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        List categorias = produtoDAO.getCategorias();
+        for (Object c : categorias) {
+            var categoria = (Categoria) c;
+            txtCategoria.addItem(categoria.getNome());
+        }
+
     }
 
     /**
@@ -55,7 +69,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         txtValor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtEstoque1 = new javax.swing.JTextField();
+        txtEstoque = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(450, 330));
@@ -137,7 +151,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(94, 50, 8));
         jLabel4.setText("CATEGORIA");
 
-        txtCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA A CATEGORIA", "LATICÍNIOS", "BEBIDAS", "SALGADOS", "CONFEITARIA" }));
+        txtCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA A CATEGORIA" }));
 
         txtUnidadeMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA O TIPO", "KG", "G", "L", "ML" }));
 
@@ -167,17 +181,17 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(94, 50, 8));
         jLabel7.setText("VALOR");
 
-        txtEstoque1.setMaximumSize(new java.awt.Dimension(310, 30));
-        txtEstoque1.setMinimumSize(new java.awt.Dimension(310, 30));
-        txtEstoque1.setPreferredSize(new java.awt.Dimension(310, 30));
-        txtEstoque1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtEstoque.setMaximumSize(new java.awt.Dimension(310, 30));
+        txtEstoque.setMinimumSize(new java.awt.Dimension(310, 30));
+        txtEstoque.setPreferredSize(new java.awt.Dimension(310, 30));
+        txtEstoque.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEstoque1FocusLost(evt);
+                txtEstoqueFocusLost(evt);
             }
         });
-        txtEstoque1.addActionListener(new java.awt.event.ActionListener() {
+        txtEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstoque1ActionPerformed(evt);
+                txtEstoqueActionPerformed(evt);
             }
         });
 
@@ -218,7 +232,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(171, 171, 171))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -257,7 +271,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
@@ -304,29 +318,39 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // INSERINDO NA TABELA clientes
+        // INSERINDO NA TABELA produtos
         Produto produto = new Produto();
 
         produto.setNome(txtNome.getText());
-        produto.setCategoria((String) txtCategoria.getSelectedItem());
+        if (txtCategoria.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Escolha uma categoria!");
+            return;
+        }
+
+        if (txtUnidadeMedida.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Escolha um tipo!");
+            return;
+        }
+
         produto.setUnidade_de_medida((String) txtUnidadeMedida.getSelectedItem());
-        produto.setEstoque(Integer.parseInt(txtValor.getText()));
+        produto.setCategoria(txtCategoria.getSelectedIndex());
+        produto.setEstoque(Integer.parseInt(txtEstoque.getText()));
         produto.setValor(Integer.parseInt(txtValor.getText()));
 
         ProdutoDAO produtoDAO = new ProdutoDAO();
         produtoDAO.inserir(produto);
 
         JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
-
+        this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void txtEstoque1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoque1FocusLost
+    private void txtEstoqueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoqueFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstoque1FocusLost
+    }//GEN-LAST:event_txtEstoqueFocusLost
 
-    private void txtEstoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstoque1ActionPerformed
+    private void txtEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstoqueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstoque1ActionPerformed
+    }//GEN-LAST:event_txtEstoqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,7 +398,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> txtCategoria;
-    private javax.swing.JTextField txtEstoque1;
+    private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     private javax.swing.JComboBox<String> txtUnidadeMedida;

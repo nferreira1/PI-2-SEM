@@ -89,7 +89,7 @@
                           <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtEstoque1" pref="0" max="32767" attributes="0"/>
+                          <Component id="txtEstoque" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="txtValor" min="-2" pref="210" max="-2" attributes="0"/>
                       </Group>
@@ -140,7 +140,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtValor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEstoque1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtEstoque" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="78" max="32767" attributes="0"/>
               </Group>
@@ -291,12 +291,8 @@
         <Component class="javax.swing.JComboBox" name="txtCategoria">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="1">
                 <StringItem index="0" value="ESCOLHA A CATEGORIA"/>
-                <StringItem index="1" value="LATIC&#xcd;NIOS"/>
-                <StringItem index="2" value="BEBIDAS"/>
-                <StringItem index="3" value="SALGADOS"/>
-                <StringItem index="4" value="CONFEITARIA"/>
               </StringArray>
             </Property>
           </Properties>
@@ -370,7 +366,7 @@
             <Property name="text" type="java.lang.String" value="VALOR"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtEstoque1">
+        <Component class="javax.swing.JTextField" name="txtEstoque">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[310, 30]"/>
@@ -383,8 +379,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEstoque1FocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEstoque1ActionPerformed"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEstoqueFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEstoqueActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
