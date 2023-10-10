@@ -32,4 +32,12 @@ public class ProdutoDAO {
             throw new RuntimeException("Erro ao inserir cliente.", e);
         }
     }
+
+    public void deletar() {
+        String sql = "";
+        
+        
+
+    }
+
 }

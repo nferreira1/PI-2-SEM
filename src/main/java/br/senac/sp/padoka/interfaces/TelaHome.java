@@ -248,7 +248,7 @@ public class TelaHome extends javax.swing.JFrame {
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         // VERIFICA SE A TELA DE CLIENTES ESTÁ ABERTA, CASO TRUE, DESABILITA O btnClientes
-        new VerificaTelaAberta().verificaTelaAberta(new TelaClientes(), this, btnClientes, false);
+        new VerificaTelaAberta().verificaTelaAberta(new TelaClientes(), this, btnClientes, true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

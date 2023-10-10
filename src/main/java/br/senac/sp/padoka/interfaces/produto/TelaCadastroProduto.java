@@ -315,6 +315,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         ProdutoDAO produtoDAO = new ProdutoDAO();
         produtoDAO.inserir(produto);
+
+        JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtEstoque1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoque1FocusLost

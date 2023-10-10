@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,6 +45,57 @@ public class EnderecoDAO {
             throw new RuntimeException("Erro ao inserir cliente.", e);
         }
     }
-    
-    
+
+    public void atualizar(Endereco endereco, int id) {
+        String sql = "UPDATE enderecos SET CEP = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, UF = ?, cidade = ? WHERE id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, endereco.getCep());
+            stmt.setString(2, endereco.getLogradouro());
+            stmt.setString(3, endereco.getNumero());
+            stmt.setString(4, endereco.getBairro());
+            stmt.setString(5, endereco.getComplemento());
+            stmt.setString(6, endereco.getUf());
+            stmt.setString(7, endereco.getLocalidade());
+            stmt.setInt(8, id);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar endereco.", e);
+        }
+    }
+
+    public List<Endereco> listarEndereco(int id) {
+        List<Endereco> listaEnderecos = new ArrayList<>();
+
+        String sql = "SELECT * FROM enderecos WHERE ID = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);  // Configurar o valor do parâmetro ANTES de executar a consulta
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Endereco endereco = new Endereco();
+
+                    endereco.setId(rs.getInt("id"));
+                    endereco.setLogradouro(rs.getString("logradouro"));
+                    endereco.setCep(rs.getString("cep"));
+                    endereco.setLocalidade(rs.getString("cidade"));
+                    endereco.setUf(rs.getString("uf"));
+                    endereco.setNumero(rs.getString("numero"));
+                    endereco.setBairro(rs.getString("bairro"));
+                    endereco.setComplemento(rs.getString("complemento"));
+
+                    listaEnderecos.add(endereco);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar endereços.", e);
+        }
+
+        return listaEnderecos;
+    }
 }

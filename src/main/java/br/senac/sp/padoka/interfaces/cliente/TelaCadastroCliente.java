@@ -581,6 +581,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         btnConfirmar.setMinimumSize(new java.awt.Dimension(95, 55));
         btnConfirmar.setPreferredSize(new java.awt.Dimension(95, 55));
         btnConfirmar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfirmarMouseClicked(evt);
+            }
+        });
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
@@ -761,7 +766,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         cliente.setNome(txtNome.getText());
         cliente.setCPF(txtCPF.getText());
-        cliente.setData_de_nascimento(ConverteData.converteData(txtDataNascimento.getText()));
+        cliente.setData_de_nascimento(ConverteData.converteData(txtDataNascimento.getText(), "US"));
         cliente.setSexo((String) txtSexo.getSelectedItem());
         cliente.setEstado_civil((String) txtEstadoCivil.getSelectedItem());
         cliente.setCelular(txtCelular.getText());
@@ -776,6 +781,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfirmarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -813,9 +822,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConfirmar;
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnConfirmar;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -839,21 +848,21 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField txtBairro;
-    private javax.swing.JFormattedTextField txtCEP;
-    private javax.swing.JFormattedTextField txtCPF;
-    private javax.swing.JFormattedTextField txtCelular;
-    private javax.swing.JTextField txtCidade;
-    private javax.swing.JTextField txtComplemento;
-    private javax.swing.JFormattedTextField txtDataNascimento;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JComboBox<String> txtEstadoCivil;
-    private javax.swing.JTextField txtLogradouro;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNumero;
-    private javax.swing.JTextArea txtObservacoes;
-    private javax.swing.JComboBox<String> txtSexo;
-    private javax.swing.JFormattedTextField txtTelefone;
-    private javax.swing.JTextField txtUF;
+    public javax.swing.JTextField txtBairro;
+    public javax.swing.JFormattedTextField txtCEP;
+    public javax.swing.JFormattedTextField txtCPF;
+    public javax.swing.JFormattedTextField txtCelular;
+    public javax.swing.JTextField txtCidade;
+    public javax.swing.JTextField txtComplemento;
+    public javax.swing.JFormattedTextField txtDataNascimento;
+    public javax.swing.JTextField txtEmail;
+    public javax.swing.JComboBox<String> txtEstadoCivil;
+    public javax.swing.JTextField txtLogradouro;
+    public javax.swing.JTextField txtNome;
+    public javax.swing.JTextField txtNumero;
+    public javax.swing.JTextArea txtObservacoes;
+    public javax.swing.JComboBox<String> txtSexo;
+    public javax.swing.JFormattedTextField txtTelefone;
+    public javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }

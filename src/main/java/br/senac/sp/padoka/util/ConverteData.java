@@ -14,9 +14,19 @@ import java.util.Date;
  */
 public class ConverteData {
 
-    public static String converteData(String dateStr) {
-        SimpleDateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat destFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public static String converteData(String dateStr, String tipo) {
+        SimpleDateFormat sourceFormat;
+        SimpleDateFormat destFormat;
+
+        if (tipo.equals("US")) {
+            sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+            destFormat = new SimpleDateFormat("yyyy-MM-dd");
+        } else if (tipo.equals("BR")) {
+            sourceFormat = new SimpleDateFormat("yyyy-MM-dd");
+            destFormat = new SimpleDateFormat("dd/MM/yyyy");
+        } else {
+            return null;
+        }
 
         try {
             Date date = sourceFormat.parse(dateStr);
