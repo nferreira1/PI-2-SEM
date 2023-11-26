@@ -29,7 +29,7 @@ public class ProdutoDAO {
             stmt.setInt(2, produto.getCategoria());
             stmt.setString(3, produto.getUnidade_de_medida());
             stmt.setInt(4, produto.getEstoque());
-            stmt.setInt(5, produto.getValor());
+            stmt.setDouble(5, produto.getValor());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -38,7 +38,7 @@ public class ProdutoDAO {
     }
 
     public void atualizar(Produto produto) {
-        String sql = "UPDATE produtos SET nome = ?, categoria_id = ?, unidade_de_medida = ?, estoque = ?, valor = ?) VALUES (?, ?, ?, ?, ?)";
+        String sql = "UPDATE produtos SET nome = ?, categoria_id = ?, unidade_de_medida = ?, estoque = ?, valor = ? WHERE ID = ?";
 
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -46,11 +46,12 @@ public class ProdutoDAO {
             stmt.setInt(2, produto.getCategoria());
             stmt.setString(3, produto.getUnidade_de_medida());
             stmt.setInt(4, produto.getEstoque());
-            stmt.setInt(5, produto.getValor());
+            stmt.setDouble(5, produto.getValor());
+            stmt.setInt(6, produto.getId());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao inserir cliente.", e);
+            throw new RuntimeException("Erro ao inserir produto.", e);
         }
     }
 

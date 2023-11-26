@@ -5,8 +5,11 @@
 package br.senac.sp.padoka.interfaces.produto;
 
 import br.senac.sp.padoka.dao.ProdutoDAO;
+import br.senac.sp.padoka.model.Categoria;
 import br.senac.sp.padoka.model.Produto;
 import br.senac.sp.padoka.util.VerificaTelaAberta;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -75,7 +78,7 @@ public class TelaProdutos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "CATEGORIA", "TIPO", "ESTOQUE", "VALOR"
+                "ID", "NOME", "CATEGORIA", "MEDIDA", "ESTOQUE", "VALOR"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -105,6 +108,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnEditar.setMinimumSize(new java.awt.Dimension(95, 55));
         btnEditar.setPreferredSize(new java.awt.Dimension(95, 55));
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA A CATEGORIA" }));
         txtSexo.setBorder(null);
@@ -225,22 +233,60 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        List<Produto> listaClientes = produtoDAO.listarProdutos();
+        List<Produto> listaProdutos = produtoDAO.listarProdutos();
 
         DefaultTableModel tabela = (DefaultTableModel) tabelaProdutos.getModel();
         tabela.setRowCount(0);
 
-        for (Produto produto : listaClientes) {
+        for (Produto produto : listaProdutos) {
             tabela.addRow(new Object[]{
                 produto.getId(),
                 produto.getNome(),
-                produto.getCategoria(),
+                produto.getNomeCategoria(),
                 produto.getUnidade_de_medida(),
                 produto.getEstoque(),
                 produto.getValor()
             });
         }
     }//GEN-LAST:event_formWindowActivated
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        TelaCadastroProduto tela = new TelaCadastroProduto(true);
+        DefaultTableModel tabela = (DefaultTableModel) tabelaProdutos.getModel();
+
+        int linhaSelecionada = tabelaProdutos.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um produto para editar.");
+        } else {
+            new VerificaTelaAberta().verificaTelaAberta(tela, this, btnEditar, true);
+            Produto produtoEdit = new Produto();
+
+            tela.txtID.setText(String.valueOf(tabela.getValueAt(linhaSelecionada, 0)));
+            tela.txtNome.setText((String) tabela.getValueAt(linhaSelecionada, 1));
+            tela.txtCategoria.setSelectedItem((String) tabela.getValueAt(linhaSelecionada, 2));
+            tela.txtUnidadeMedida.setSelectedItem((String) tabela.getValueAt(linhaSelecionada, 3));
+            tela.txtEstoque.setText(String.valueOf(tabela.getValueAt(linhaSelecionada, 4)));
+            tela.txtValor.setText(String.valueOf(tabela.getValueAt(linhaSelecionada, 5)));
+
+            tela.btnConfirmar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    produtoEdit.setId(Integer.parseInt(tela.txtID.getText()));
+                    produtoEdit.setNome(tela.txtNome.getText());
+                    produtoEdit.setCategoria(tela.txtCategoria.getSelectedIndex());
+                    produtoEdit.setUnidade_de_medida((String) tela.txtUnidadeMedida.getSelectedItem());
+                    produtoEdit.setEstoque(Integer.parseInt(tela.txtEstoque.getText()));
+                    produtoEdit.setValor(Double.parseDouble(tela.txtValor.getText()));
+
+                    produtoDAO.atualizar(produtoEdit);
+
+                    JOptionPane.showMessageDialog(rootPane, "Produto atualizado com sucesso!");
+                    tela.dispose();
+                }
+            });
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments

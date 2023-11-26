@@ -243,7 +243,7 @@ public class TelaClientes extends javax.swing.JFrame {
         int linhaSelecionada = tabelaClientes.getSelectedRow();
 
         if (linhaSelecionada == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione um cliente para editar.");
+            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente para editar.");
         } else {
             new VerificaTelaAberta().verificaTelaAberta(tela, this, btnEditar, true);
             Cliente clienteEdit = new Cliente();

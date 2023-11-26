@@ -50,7 +50,6 @@ public class TelaHome extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnEstoque = new javax.swing.JButton();
         btnRelatorioVendas = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
@@ -80,21 +79,6 @@ public class TelaHome extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(450, 330));
         jPanel1.setMinimumSize(new java.awt.Dimension(450, 330));
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 330));
-
-        btnEstoque.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEstoque.setForeground(new java.awt.Color(94, 50, 8));
-        btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/caixa.png"))); // NOI18N
-        btnEstoque.setText("ESTOQUE");
-        btnEstoque.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEstoque.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnEstoque.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnEstoque.setMinimumSize(new java.awt.Dimension(200, 40));
-        btnEstoque.setPreferredSize(new java.awt.Dimension(200, 40));
-        btnEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEstoqueActionPerformed(evt);
-            }
-        });
 
         btnRelatorioVendas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRelatorioVendas.setForeground(new java.awt.Color(94, 50, 8));
@@ -191,8 +175,7 @@ public class TelaHome extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 1, Short.MAX_VALUE))
@@ -202,7 +185,7 @@ public class TelaHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnEstoque, btnProdutos, btnRelatorioVendas});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClientes, btnProdutos, btnRelatorioVendas});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,21 +194,20 @@ public class TelaHome extends javax.swing.JFrame {
                 .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRelatorioVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addGap(25, 25, 25)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClientes, btnEstoque, btnProdutos, btnRelatorioVendas});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClientes, btnProdutos, btnRelatorioVendas});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,11 +222,6 @@ public class TelaHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
-        // VERIFICA SE A TELA DE ESTOQUE ESTÁ ABERTA, CASO TRUE, DESABILITA O btnEstoque
-        new VerificaTelaAberta().verificaTelaAberta(new TelaEstoque(), this, btnEstoque, false);
-    }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         // VERIFICA SE A TELA DE CLIENTES ESTÁ ABERTA, CASO TRUE, DESABILITA O btnClientes
@@ -308,7 +285,6 @@ public class TelaHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnRelatorioVendas;
     private javax.swing.JButton btnSair;

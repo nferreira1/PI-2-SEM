@@ -18,16 +18,37 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class TelaCadastroProduto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroProduto
-     */
+    private boolean tipoTela;
+
     public TelaCadastroProduto() {
+        this.tipoTela = true;
+
         initComponents();
 
         carregarCategorias();
 
         // SETA O TÍTULO DO JFRAME
         setTitle("Cadastro de produtos");
+
+        // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        // SETA O FAVICON
+        setIconImage(new ImageIcon(TelaCadastroProduto.class.getResource("/imagens/favicon.png")).getImage());
+    }
+
+    public TelaCadastroProduto(boolean edit) {
+        this.tipoTela = false;
+
+        initComponents();
+
+        carregarCategorias();
+
+        // SETA O TÍTULO
+        setTitle("Editar produto");
+
+        // ALTERA O TEXTO DO btnConfirmar
+        btnConfirmar.setText("ATUALIZAR");
 
         // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -306,7 +327,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        // TODO add your handling code here:
+        txtNome.setText(txtNome.getText().toUpperCase());
     }//GEN-LAST:event_txtNomeFocusLost
 
     private void txtValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFocusLost
@@ -318,30 +339,34 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // INSERINDO NA TABELA produtos
-        Produto produto = new Produto();
 
-        produto.setNome(txtNome.getText());
-        if (txtCategoria.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Escolha uma categoria!");
-            return;
+        if (tipoTela) {
+            // INSERINDO NA TABELA produtos
+            Produto produto = new Produto();
+
+            produto.setNome(txtNome.getText());
+            if (txtCategoria.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Escolha uma categoria!");
+                return;
+            }
+
+            if (txtUnidadeMedida.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Escolha um tipo!");
+                return;
+            }
+
+            produto.setUnidade_de_medida((String) txtUnidadeMedida.getSelectedItem());
+            produto.setCategoria(txtCategoria.getSelectedIndex());
+            produto.setEstoque(Integer.parseInt(txtEstoque.getText()));
+            produto.setValor(Double.parseDouble(txtValor.getText().replace(',', '.')));
+
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            produtoDAO.inserir(produto);
+
+            JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
+            this.dispose();
         }
 
-        if (txtUnidadeMedida.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Escolha um tipo!");
-            return;
-        }
-
-        produto.setUnidade_de_medida((String) txtUnidadeMedida.getSelectedItem());
-        produto.setCategoria(txtCategoria.getSelectedIndex());
-        produto.setEstoque(Integer.parseInt(txtEstoque.getText()));
-        produto.setValor(Integer.parseInt(txtValor.getText()));
-
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        produtoDAO.inserir(produto);
-
-        JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
-        this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtEstoqueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoqueFocusLost
@@ -388,8 +413,8 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConfirmar;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnConfirmar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -397,11 +422,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> txtCategoria;
-    private javax.swing.JTextField txtEstoque;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JComboBox<String> txtUnidadeMedida;
-    private javax.swing.JTextField txtValor;
+    public javax.swing.JComboBox<String> txtCategoria;
+    public javax.swing.JTextField txtEstoque;
+    public javax.swing.JTextField txtID;
+    public javax.swing.JTextField txtNome;
+    public javax.swing.JComboBox<String> txtUnidadeMedida;
+    public javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

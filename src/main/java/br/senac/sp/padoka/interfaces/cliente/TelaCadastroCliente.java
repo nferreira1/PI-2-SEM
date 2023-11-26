@@ -25,9 +25,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         return this.tipoTela;
     }
 
-    /**
-     * Creates new form TelaCadastroCliente
-     */
     public TelaCadastroCliente() {
         this.tipoTela = true;
 
@@ -455,6 +452,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         txtComplemento.setMaximumSize(new java.awt.Dimension(100, 30));
         txtComplemento.setMinimumSize(new java.awt.Dimension(100, 30));
         txtComplemento.setPreferredSize(new java.awt.Dimension(100, 30));
+        txtComplemento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtComplementoFocusLost(evt);
+            }
+        });
         txtComplemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtComplementoActionPerformed(evt);
@@ -774,7 +776,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         if (tipoTela) {
-
             // INSERINDO NA TABELA enderecos
             Endereco endereco = new Endereco();
 
@@ -812,6 +813,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
 
             JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+            this.dispose();
         }
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
@@ -819,6 +821,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarMouseClicked
+
+    private void txtComplementoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtComplementoFocusLost
+        txtComplemento.setText(txtComplemento.getText().toUpperCase());
+    }//GEN-LAST:event_txtComplementoFocusLost
 
     /**
      * @param args the command line arguments

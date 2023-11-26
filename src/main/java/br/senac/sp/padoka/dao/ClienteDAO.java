@@ -132,7 +132,7 @@ public class ClienteDAO {
 
     public void deletar(int id) {
         String sql = "UPDATE clientes SET status_conta = 0 WHERE id = ?";
-
+       
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);

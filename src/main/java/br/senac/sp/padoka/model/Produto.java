@@ -16,11 +16,12 @@ public class Produto {
     private String nomeCategoria;
     private String unidade_de_medida;
     private int estoque;
-    private int valor;
+    private double valor;
 
-    public Produto(String nome, int categoria_id, String unidade_de_medida, int estoque, int valor) {
+    public Produto(String nome, int categoria_id, String nomeCategoria, String unidade_de_medida, int estoque, double valor) {
         this.nome = nome;
         this.categoria_id = categoria_id;
+        this.nomeCategoria = nomeCategoria;
         this.unidade_de_medida = unidade_de_medida;
         this.estoque = estoque;
         this.valor = valor;
@@ -78,11 +79,11 @@ public class Produto {
         this.estoque = estoque;
     }
 
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
