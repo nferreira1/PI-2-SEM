@@ -54,7 +54,9 @@ CREATE TABLE produtos (
 
 CREATE TABLE vendas (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-    valor DECIMAL(10, 2)
+    valor DECIMAL(10, 2),
+    cliente_id INT NOT NULL,
+	FOREIGN KEY(cliente_id) REFERENCES clientes(ID)
 );
 
 CREATE TABLE itensVendas (
@@ -78,8 +80,9 @@ END;
 //
 DELIMITER ;
 
-SHOW TRIGGERS;
 
+
+SHOW TRIGGERS;
 SELECT * FROM clientes;
 SELECT * FROM produtos;
 SELECT * FROM vendas;
