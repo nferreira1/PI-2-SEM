@@ -87,7 +87,7 @@ public class Endereco {
 
     public void setNumero(String numero) {
         if (numero.isBlank() || numero.isEmpty()) {
-            numero = null;
+            numero = "";
         }
         this.numero = numero;
     }
@@ -106,7 +106,7 @@ public class Endereco {
 
     public void setComplemento(String complemento) {
         if (complemento.isBlank() || complemento.isEmpty()) {
-            complemento = null;
+            complemento = "";
         }
         this.complemento = complemento;
     }

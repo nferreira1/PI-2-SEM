@@ -2,8 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.senac.sp.padoka.interfaces;
+package br.senac.sp.padoka.interfaces.relatorios;
+
+import br.senac.sp.padoka.dao.RelatorioAnaliticoDAO;
+import br.senac.sp.padoka.model.Cliente;
+import br.senac.sp.padoka.model.Produto;
+import br.senac.sp.padoka.model.RelatorioAnalitico;
+import br.senac.sp.padoka.util.ConverteData;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LENOVO
@@ -15,13 +25,13 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
      */
     public TelaRelatorioAnalitico() {
         initComponents();
-        
+
         // SETA O TÍTULO DO JFRAME
         setTitle("Relatório Analítico de Vendas");
-        
+
         // FECHA SOMENTE O JFRAME ATUAL, AO INVÉS DO APP
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
         // SETA O FAVICON
         setIconImage(new ImageIcon(TelaRelatorioAnalitico.class.getResource("/imagens/favicon.png")).getImage());
     }
@@ -39,11 +49,10 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         jDialog2 = new javax.swing.JDialog();
         jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
-        textRelatAnalitico = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaRelatorioAna = new javax.swing.JTable();
-        TextRelatórioAna1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabelaRelatorioAnalitico = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JFormattedTextField();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -68,62 +77,36 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(530, 640));
+        setPreferredSize(new java.awt.Dimension(530, 640));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(248, 220, 183));
-        jPanel1.setToolTipText("");
-        jPanel1.setMaximumSize(new java.awt.Dimension(450, 330));
-        jPanel1.setMinimumSize(new java.awt.Dimension(450, 330));
-        jPanel1.setName(""); // NOI18N
+        jPanel1.setMaximumSize(new java.awt.Dimension(530, 640));
+        jPanel1.setMinimumSize(new java.awt.Dimension(530, 640));
+        jPanel1.setPreferredSize(new java.awt.Dimension(530, 640));
 
-        textRelatAnalitico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        textRelatAnalitico.setForeground(new java.awt.Color(94, 50, 8));
-        textRelatAnalitico.setText("Relatório Analítico de Vendas ");
-        textRelatAnalitico.setMaximumSize(new java.awt.Dimension(42, 16));
-        textRelatAnalitico.setMinimumSize(new java.awt.Dimension(42, 16));
-        textRelatAnalitico.setPreferredSize(new java.awt.Dimension(42, 16));
-
-        TabelaRelatorioAna.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaRelatorioAnalitico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Cliente ", "Data", "Produto", "Quantidade", "Valor"
+                "CLIENTE", "PRODUTO", "QUANTIDADE", "VALOR", "DATA"
             }
         ));
-        jScrollPane1.setViewportView(TabelaRelatorioAna);
+        tabelaRelatorioAnalitico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabelaRelatorioAnalitico.setMaximumSize(new java.awt.Dimension(480, 430));
+        jScrollPane4.setViewportView(tabelaRelatorioAnalitico);
 
-        TextRelatórioAna1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        TextRelatórioAna1.setForeground(new java.awt.Color(94, 50, 8));
-        TextRelatórioAna1.setText("Total");
-        TextRelatórioAna1.setMaximumSize(new java.awt.Dimension(42, 16));
-        TextRelatórioAna1.setMinimumSize(new java.awt.Dimension(42, 16));
-        TextRelatórioAna1.setPreferredSize(new java.awt.Dimension(42, 16));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(94, 50, 8));
+        jLabel9.setText("ARRECADAÇÃO TOTAL");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤ #,##0.00"))));
-        jFormattedTextField1.setEnabled(false);
+        txtTotal.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,47 +115,67 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(TextRelatórioAna1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 404, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(textRelatAnalitico, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTotal))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textRelatAnalitico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextRelatórioAna1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(5, 5, 5)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        DefaultTableModel tabela = (DefaultTableModel) tabelaRelatorioAnalitico.getModel();
+
+        RelatorioAnaliticoDAO dao = new RelatorioAnaliticoDAO();
+        List<RelatorioAnalitico> listaVendas = dao.buscaVendas();
+
+        for (RelatorioAnalitico venda : listaVendas) {
+            Cliente cliente = dao.buscaCliente(venda.getClienteId());
+            Produto produto = dao.buscaProduto(venda.getProdutoId());
+
+            tabela.addRow(new Object[]{
+                cliente.getNome(),
+                produto.getNome(),
+                venda.getQuantidadeProduto(),
+                venda.getValor(),
+                ConverteData.converteData(venda.getData().toString(), "BR")
+            });
+        }
+        
+        Double valor = 0.0;
+
+        for (int linha = 0; linha < tabela.getRowCount(); linha++) {
+            Double valorLinha = Double.parseDouble(tabela.getValueAt(linha, 3).toString());
+            valor += valorLinha;
+        }
+
+        txtTotal.setValue(valor);
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -210,14 +213,13 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaRelatorioAna;
-    private javax.swing.JLabel TextRelatórioAna1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel textRelatAnalitico;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable tabelaRelatorioAnalitico;
+    private javax.swing.JFormattedTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

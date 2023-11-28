@@ -56,6 +56,7 @@ CREATE TABLE vendas (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
     valor DECIMAL(10, 2),
     cliente_id INT NOT NULL,
+	data_venda DATE,
 	FOREIGN KEY(cliente_id) REFERENCES clientes(ID)
 );
 
@@ -68,7 +69,7 @@ CREATE TABLE itensVendas (
     FOREIGN KEY(vendas_id) REFERENCES vendas(ID)
 );
 
-DELIMITER //
+DELIMITER $$
 CREATE TRIGGER diminuirEstoqueAposVenda 
 AFTER INSERT ON itensVendas 
 FOR EACH ROW 
@@ -76,15 +77,13 @@ BEGIN
     UPDATE produtos
     SET estoque = estoque - NEW.quantidade_produto
     WHERE ID = NEW.produto_id;
-END;
-//
-DELIMITER ;
-
-
+END $$
+DELIMITER $$;
 
 SHOW TRIGGERS;
+SELECT * FROM vendas;
 SELECT * FROM clientes;
 SELECT * FROM produtos;
-SELECT * FROM vendas;
+SELECT * FROM categorias_produtos;
 SELECT * FROM itensVendas;
 SELECT * FROM enderecos;

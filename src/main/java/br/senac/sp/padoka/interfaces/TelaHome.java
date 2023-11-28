@@ -4,6 +4,7 @@
  */
 package br.senac.sp.padoka.interfaces;
 
+import br.senac.sp.padoka.interfaces.relatorios.TelaRelatorioVendas;
 import br.senac.sp.padoka.interfaces.produto.TelaProdutos;
 import br.senac.sp.padoka.interfaces.cliente.TelaClientes;
 import br.senac.sp.padoka.util.VerificaTelaAberta;

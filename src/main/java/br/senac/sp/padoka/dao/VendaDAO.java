@@ -8,10 +8,12 @@ import br.senac.sp.padoka.model.Cliente;
 import br.senac.sp.padoka.model.Produto;
 import br.senac.sp.padoka.util.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -70,14 +72,16 @@ public class VendaDAO {
     }
 
     public void realizaVenda(List<Integer> idsProdutos, double valorTotal, List<Integer> quantidadesProdutos, int idCliente) {
-        String sqlVenda = "INSERT INTO vendas (valor, cliente_id) VALUES (?, ?)";
+        String sqlVenda = "INSERT INTO vendas (valor, cliente_id, data_venda) VALUES (?, ?, ?)";
         String sqlItensVenda = "INSERT INTO itensVendas (vendas_id, produto_id, quantidade_produto) VALUES (?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement stmtVenda = conn.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS)) {
 
-            // Inserir na tabela vendas
+            LocalDate dataAtual = LocalDate.now();
+
             stmtVenda.setDouble(1, valorTotal);
             stmtVenda.setInt(2, idCliente);
+            stmtVenda.setDate(3, Date.valueOf(dataAtual));
             stmtVenda.executeUpdate();
 
             int idVenda = 0;
