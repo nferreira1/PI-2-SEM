@@ -4,7 +4,7 @@
   <img src="./src/main/resources/imagens/Logo.png">
 </p>
 
-O **Padoka** é um projeto da disciplina Projeto Integrador I (PI) do curso de Tecnologia em Análise e Desenvolvimento de Sistemas do primeiro semestre, no Centro Universitário Senac - Santo Amaro visa, na medida do possível, promover a integração de conhecimentos das diversas disciplinas oferecidas em cada período correspondente a disciplina de PI. Dentro deste contexto, o projeto de PI II tem por objetivo primário aprimorar nosso conhecimento de Algoritmos e Programação, adquirido na respectiva disciplina, considerando também outras disciplinas cursadas no 2º período do curso.
+O **Padoka** é um projeto da disciplina Projeto Integrador II (PI) do curso de Tecnologia em Análise e Desenvolvimento de Sistemas do primeiro semestre, no Centro Universitário Senac - Santo Amaro visa, na medida do possível, promover a integração de conhecimentos das diversas disciplinas oferecidas em cada período correspondente a disciplina de PI. Dentro deste contexto, o projeto de PI II tem por objetivo primário aprimorar nosso conhecimento de Algoritmos e Programação, adquirido na respectiva disciplina, considerando também outras disciplinas cursadas no 2º período do curso.
 
 Por fim, é relevante ressaltar que no decorrer do projeto, houve uma forte ênfase na aplicação dos elementos de desenvolvimento abordados nas disciplinas de Algoritmos II e Banco de Dados durante o 2º período, assim como na utilização da linguagem Java, banco de dados MySQL e ferramentas como o Trello, Git e GitHub.
 
